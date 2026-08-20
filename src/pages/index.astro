@@ -1,0 +1,30 @@
+---
+import Counter from "../components/Counter";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="A small Astro and React starter website." />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
+    <title>Stephan — Website</title>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Astro + React</p>
+      <h1>A small place<br />for the next idea.</h1>
+      <p class="intro">
+        This site is statically built with Astro and published to GitHub Pages.
+        React is ready when a page needs a little interactivity.
+      </p>
+      <Counter client:load />
+    </main>
+    <footer>
+      <span>Built for the web</span>
+      <span>{new Date().getFullYear()}</span>
+    </footer>
+  </body>
+</html>
