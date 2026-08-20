@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const phoneDisplay = "0172 4361676";
 const phoneHref = "+491724361676";
 const email = "stephan-mertin@web.de";
