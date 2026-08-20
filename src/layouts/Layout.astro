@@ -26,9 +26,15 @@ const homeUrl = `${base}/`;
     <header class="site-header">
       <a class="brand" href={homeUrl} aria-label="Begleitet Reisen – Startseite">
         <img src={`${base}/logo.jpeg`} alt="" width="200" height="200" />
-        <span class="brand-name">Stephan Mertin <small>Freizeit & Reisen mit Behinderung</small></span>
       </a>
-      {page === "legal" && <a class="back-link" href={homeUrl}>Zurück zur Startseite</a>}
+      {page === "legal" ? (
+        <a class="back-link" href={homeUrl}>Zurück zur Startseite</a>
+      ) : (
+        <div class="header-contact">
+          <p><span>Persönlich begleitet</span>Über 30 Jahre Erfahrung</p>
+          <a href="mailto:stephan-mertin@web.de">Kontakt aufnehmen</a>
+        </div>
+      )}
     </header>
 
     <slot />
