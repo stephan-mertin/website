@@ -1,30 +1,129 @@
 ---
-import Counter from "../components/Counter";
-import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL;
+const phoneDisplay = "0172 4361676";
+const phoneHref = "+491724361676";
+const email = "stephan-mertin@web.de";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="A small Astro and React starter website." />
-    <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
-    <title>Stephan — Website</title>
-  </head>
-  <body>
-    <main>
-      <p class="eyebrow">Astro + React</p>
-      <h1>A small place<br />for the next idea.</h1>
-      <p class="intro">
-        This site is statically built with Astro and published to GitHub Pages.
-        React is ready when a page needs a little interactivity.
+<Layout
+  title="Begleitet Reisen mit Stephan Mertin"
+  description="Individuelle Reisebegleitung, Ausflüge und Freizeitaktivitäten mit über 30 Jahren Erfahrung."
+  page="home"
+>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Gemeinsam die Welt entdecken</p>
+        <h1 id="hero-title">Begleitet<br /><em>Reisen.</em></h1>
+        <p class="hero-intro">
+          Persönliche Reisebegleitung für Menschen mit Handicap – aufmerksam,
+          erfahren und so individuell wie Ihre Wünsche.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href={`tel:${phoneHref}`}>Jetzt anrufen</a>
+          <a class="button button-secondary" href={`mailto:${email}`}>E-Mail schreiben</a>
+        </div>
+      </div>
+      <figure class="portrait-wrap">
+        <img
+          class="portrait"
+          src={`${base}/stephan-mertin.jpeg`}
+          alt="Stephan Mertin"
+          width="1440"
+          height="1438"
+        />
+        <figcaption>
+          <span>Stephan Mertin</span>
+          <span>Ihr Reisebegleiter</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="about section-grid" aria-labelledby="about-title">
+      <div>
+        <p class="section-number">01</p>
+        <h2 id="about-title">Reisen, die zu Ihnen passen.</h2>
+      </div>
+      <div class="section-copy">
+        <p class="lead">
+          Ich bin Stephan Mertin, Erzieher und seit über 30 Jahren in der
+          Begleitung von Menschen mit Handicap tätig.
+        </p>
+        <p>
+          Ob Urlaub, Wochenendausflug oder ein besonderes Erlebnis: Gemeinsam
+          planen wir, was Ihnen Freude macht. Ihr Wohlbefinden, Ihr Tempo und
+          Ihre persönlichen Wünsche stehen dabei im Mittelpunkt.
+        </p>
+      </div>
+    </section>
+
+    <section class="offers" aria-labelledby="offers-title">
+      <div class="section-heading">
+        <p class="section-number">02</p>
+        <h2 id="offers-title">Was wir erleben können</h2>
+      </div>
+      <div class="offer-list">
+        <article>
+          <span>01</span>
+          <h3>Urlaubsreisen</h3>
+          <p>Neue Orte entdecken, entspannen und die Reise sicher genießen.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Ausflüge</h3>
+          <p>Spannende Ziele in der Nähe oder ein Wochenende in einer neuen Stadt.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Veranstaltungen</h3>
+          <p>Fußball, Motorsport, Konzerte und andere besondere Erlebnisse.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Eigene Wünsche</h3>
+          <p>Freunde oder Familie besuchen – gemeinsam machen wir es möglich.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="experience section-grid" aria-labelledby="experience-title">
+      <div>
+        <p class="section-number">03</p>
+        <h2 id="experience-title">Schon erlebt.<br />Noch viel vor.</h2>
+      </div>
+      <div class="experience-cards">
+        <article>
+          <p class="card-label">Städte & Urlaub</p>
+          <p>Dresden · Berlin · Stockholm</p>
+        </article>
+        <article>
+          <p class="card-label">Sport</p>
+          <p>RB Leipzig · FC Bayern München · Dynamo Dresden · Energie Cottbus</p>
+        </article>
+        <article>
+          <p class="card-label">Veranstaltungen</p>
+          <p>DTM Lausitzring · Cavalluna</p>
+        </article>
+        <a class="pdf-link" href={`${base}/begleitet-reisen-information.pdf`} target="_blank">
+          <span>Informationsblatt ansehen</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <p class="eyebrow">Lassen Sie uns sprechen</p>
+      <h2 id="contact-title">Wohin soll<br />es gehen?</h2>
+      <p>
+        Erzählen Sie mir von Ihrem Reisewunsch. Ich freue mich darauf,
+        gemeinsam mit Ihnen die passende Begleitung zu planen.
       </p>
-      <Counter client:load />
-    </main>
-    <footer>
-      <span>Built for the web</span>
-      <span>{new Date().getFullYear()}</span>
-    </footer>
-  </body>
-</html>
+      <div class="contact-links">
+        <a href={`tel:${phoneHref}`}>{phoneDisplay}</a>
+        <a href={`mailto:${email}`}>{email}</a>
+      </div>
+    </section>
+  </main>
+</Layout>

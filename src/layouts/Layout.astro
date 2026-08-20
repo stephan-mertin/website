@@ -1,0 +1,44 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  page?: "home" | "legal";
+}
+
+const { title, description, page = "legal" } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const homeUrl = `${base}/`;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1b466d" />
+    <link rel="icon" href={`${base}/logo.jpeg`} />
+    <title>{title}</title>
+  </head>
+  <body class:list={{ "legal-page": page === "legal" }}>
+    <header class="site-header">
+      <a class="brand" href={homeUrl} aria-label="Begleitet Reisen – Startseite">
+        <img src={`${base}/logo.jpeg`} alt="" width="200" height="200" />
+        <span class="brand-name">Stephan Mertin <small>Freizeit & Reisen mit Behinderung</small></span>
+      </a>
+      {page === "legal" && <a class="back-link" href={homeUrl}>Zurück zur Startseite</a>}
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <p>Begleitet Reisen · Stephan Mertin</p>
+      <nav aria-label="Rechtliche Informationen">
+        <a href={`${base}/impressum/`}>Impressum</a>
+        <a href={`${base}/datenschutz/`}>Datenschutz</a>
+      </nav>
+    </footer>
+  </body>
+</html>
