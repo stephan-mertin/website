@@ -84,7 +84,7 @@ main {
 }
 
 .back-link { font-size: .82rem; text-underline-offset: .25em; }
-.eyebrow, .section-number, .card-label {
+.eyebrow, .card-label {
   font-size: .7rem;
   font-weight: 750;
   letter-spacing: .16em;
@@ -123,18 +123,15 @@ main {
 .portrait-wrap figcaption { display: flex; justify-content: space-between; padding-top: 1rem; border-bottom: 1px solid var(--ink); font-size: .72rem; letter-spacing: .08em; line-height: 2.2; text-transform: uppercase; }
 
 .section-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(3rem, 10vw, 10rem); padding: 9rem 0; border-top: 1px solid var(--line); }
-.section-number { color: var(--orange); }
 .section-grid h2, .section-heading h2 { max-width: 13ch; margin: 1rem 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 400; line-height: .98; letter-spacing: -.045em; }
 .section-copy { max-width: 38rem; font-size: 1rem; line-height: 1.8; }
 .section-copy .lead { margin-top: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 3vw, 2.15rem); line-height: 1.35; }
 
 .offers { padding: 8rem 0; color: var(--cream); background: var(--ink); box-shadow: 0 0 0 100vmax var(--ink); clip-path: inset(0 -100vmax); }
-.offers .section-number { color: var(--gold); }
 .section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; margin-bottom: 5rem; }
 .section-heading h2 { margin-top: 0; }
 .offer-list { border-top: 1px solid rgb(244 240 231 / 30%); }
-.offer-list article { display: grid; grid-template-columns: 4rem minmax(11rem, .8fr) 1fr; gap: 1rem; align-items: baseline; padding: 2rem 0; border-bottom: 1px solid rgb(244 240 231 / 30%); }
-.offer-list article > span { color: var(--gold); font-size: .7rem; }
+.offer-list article { display: grid; grid-template-columns: minmax(11rem, .8fr) 1fr; gap: 1rem; align-items: baseline; padding: 2rem 0; border-bottom: 1px solid rgb(244 240 231 / 30%); }
 .offer-list h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 3vw, 2.35rem); font-weight: 400; }
 .offer-list p { max-width: 32rem; margin: 0; color: rgb(244 240 231 / 72%); line-height: 1.65; }
 
@@ -172,8 +169,7 @@ main {
   .section-grid { grid-template-columns: 1fr; gap: 3rem; padding: 6rem 0; }
   .section-heading { display: block; }
   .section-heading h2 { margin-top: 1rem; }
-  .offer-list article { grid-template-columns: 2rem 1fr; }
-  .offer-list p { grid-column: 2; }
+  .offer-list article { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 34rem) {
