@@ -141,11 +141,24 @@ main {
 .card-label { color: var(--orange); }
 .pdf-link { display: flex; justify-content: space-between; padding: 1.5rem; border-radius: 1rem; color: var(--cream); background: var(--orange); font-weight: 750; text-decoration: none; }
 
-.contact { margin-bottom: 5rem; padding: clamp(3rem, 8vw, 7rem); border-radius: 2rem; color: var(--cream); background: var(--orange); }
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(18rem, .8fr); gap: clamp(3rem, 7vw, 7rem); align-items: start; margin-bottom: 5rem; padding: clamp(3rem, 7vw, 7rem); border-radius: 2rem; color: var(--cream); background: var(--orange); }
 .contact h2 { max-width: 8ch; font-size: clamp(4rem, 9vw, 8rem); }
-.contact > p:not(.eyebrow) { max-width: 35rem; font-size: 1.15rem; line-height: 1.7; }
+.contact-copy > p:not(.eyebrow) { max-width: 35rem; font-size: 1.15rem; line-height: 1.7; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 3rem; }
 .contact-links a { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.15rem, 2.5vw, 2rem); text-underline-offset: .3em; }
+.contact-form { display: grid; gap: 1.35rem; padding: clamp(1.5rem, 4vw, 2.5rem); border-radius: 1.25rem; color: var(--ink); background: var(--cream); }
+.form-field { display: grid; gap: .5rem; }
+.form-field label { font-size: .72rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.form-field input, .form-field textarea { width: 100%; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; outline: none; color: var(--ink); background: transparent; font: inherit; }
+.form-field textarea { min-height: 8rem; resize: none; line-height: 1.5; }
+.form-field input:focus, .form-field textarea:focus { border-bottom-color: var(--orange); box-shadow: 0 1px 0 var(--orange); }
+.contact-form button { justify-self: start; padding: .9rem 1.25rem; border: 1px solid var(--ink); border-radius: 999px; color: var(--cream); background: var(--ink); font: inherit; font-size: .82rem; font-weight: 750; cursor: pointer; transition: transform 150ms, color 150ms, background 150ms; }
+.contact-form button:hover { color: var(--ink); background: transparent; transform: translateY(-2px); }
+.contact-form button:disabled { cursor: wait; opacity: .65; transform: none; }
+.form-status { min-height: 1.5em; margin: 0; font-size: .85rem; line-height: 1.5; }
+.form-status-success { color: #17683a; }
+.form-status-error { color: #a43818; }
+.form-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
 
 .site-footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--line); font-size: .75rem; }
 .site-footer p { margin: 0; }
@@ -170,6 +183,7 @@ main {
   .section-heading { display: block; }
   .section-heading h2 { margin-top: 1rem; }
   .offer-list article { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 34rem) {
@@ -190,5 +204,5 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .button:hover { transform: none; }
+  .button:hover, .contact-form button:hover { transform: none; }
 }

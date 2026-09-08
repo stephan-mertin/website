@@ -107,16 +107,86 @@ const email = "begleitetreisen@gmail.com";
     </section>
 
     <section class="contact" aria-labelledby="contact-title">
-      <p class="eyebrow">Lassen Sie uns sprechen</p>
-      <h2 id="contact-title">Wohin soll<br />es gehen?</h2>
-      <p>
-        Erzählen Sie mir von Ihrem Reisewunsch. Ich freue mich darauf,
-        gemeinsam mit Ihnen die passende Begleitung zu planen.
-      </p>
-      <div class="contact-links">
-        <a href={`tel:${phoneHref}`}>{phoneDisplay}</a>
-        <a href={`mailto:${email}`}>{email}</a>
+      <div class="contact-copy">
+        <p class="eyebrow">Lassen Sie uns sprechen</p>
+        <h2 id="contact-title">Wohin soll<br />es gehen?</h2>
+        <p>
+          Erzählen Sie mir von Ihrem Reisewunsch. Ich freue mich darauf,
+          gemeinsam mit Ihnen die passende Begleitung zu planen.
+        </p>
+        <div class="contact-links">
+          <a href={`tel:${phoneHref}`}>{phoneDisplay}</a>
+          <a href={`mailto:${email}`}>{email}</a>
+        </div>
       </div>
+
+      <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input
+          type="hidden"
+          name="access_key"
+          value="172a40b3-f944-4b92-b437-2d147a603b79"
+        />
+        <input type="hidden" name="subject" value="Neue Anfrage über Begleitet Reisen" />
+        <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" />
+
+        <div class="form-field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" type="text" name="name" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label for="contact-email">E-Mail-Adresse</label>
+          <input id="contact-email" type="email" name="email" autocomplete="email" required />
+        </div>
+        <div class="form-field">
+          <label for="contact-message">Ihre Nachricht</label>
+          <textarea id="contact-message" name="message" rows="6" required></textarea>
+        </div>
+        <button type="submit">Nachricht senden</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </main>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const status = form.querySelector<HTMLElement>(".form-status");
+
+      if (!submitButton || !status) return;
+
+      const originalText = submitButton.textContent;
+      submitButton.textContent = "Wird gesendet …";
+      submitButton.disabled = true;
+      status.textContent = "";
+      status.className = "form-status";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Die Nachricht konnte nicht gesendet werden.");
+        }
+
+        status.textContent = "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
+        status.classList.add("form-status-success");
+        form.reset();
+      } catch (error) {
+        status.textContent = error instanceof Error
+          ? error.message
+          : "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.";
+        status.classList.add("form-status-error");
+      } finally {
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      }
+    });
+  </script>
 </Layout>
