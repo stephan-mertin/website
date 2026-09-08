@@ -135,6 +135,29 @@ main {
 .offer-list h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 3vw, 2.35rem); font-weight: 400; }
 .offer-list p { max-width: 32rem; margin: 0; color: rgb(244 240 231 / 72%); line-height: 1.65; }
 
+.process { padding: 9rem 0; }
+.process-heading { display: grid; grid-template-columns: .9fr 1.1fr; gap: 1rem clamp(3rem, 10vw, 10rem); margin-bottom: 4rem; }
+.process-heading .eyebrow { grid-column: 1 / -1; margin: 0; color: var(--turquoise); }
+.process-heading h2 { max-width: 11ch; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 400; line-height: .98; letter-spacing: -.045em; }
+.process-heading > p:last-child { max-width: 34rem; margin: .5rem 0 0; font-size: 1.08rem; line-height: 1.7; }
+.process-list { width: min(100%, 62rem); margin-inline: auto; }
+.process-step { display: grid; grid-template-columns: clamp(9rem, 22vw, 13.5rem) 1fr; min-height: 10.5rem; overflow: hidden; border-radius: 1.5rem; box-shadow: 0 .8rem 2.5rem rgb(8 43 85 / 8%); }
+.process-marker { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .75rem; padding: 1.6rem 1.75rem; color: white; background: var(--step-color); }
+.process-number { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 5vw, 4.4rem); line-height: 1; letter-spacing: -.06em; }
+.process-marker svg { width: clamp(2.5rem, 4.5vw, 3.35rem); fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.process-copy { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 1.7rem clamp(1.5rem, 4vw, 3rem) 1.7rem clamp(3rem, 5vw, 4.5rem); background: var(--step-light); }
+.process-copy::before { position: absolute; top: 1.45rem; bottom: 1.45rem; left: clamp(1.25rem, 2.5vw, 2rem); width: 3px; border-radius: 999px; background: var(--step-color); content: ""; }
+.process-copy h3 { margin: 0 0 .65rem; color: #082b55; font-size: clamp(1.25rem, 2.4vw, 1.65rem); font-weight: 800; letter-spacing: -.025em; }
+.process-copy p { max-width: 43rem; margin: 0; color: #082b55; line-height: 1.6; }
+.process-arrow { display: grid; place-items: center; height: 4.25rem; color: #082b55; }
+.process-arrow svg { width: 2rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.process-step-blue { --step-color: #187dcd; --step-light: #c9e3fc; }
+.process-step-green { --step-color: #609c51; --step-light: #d6e8cf; }
+.process-step-gold { --step-color: #e1a931; --step-light: #fee9c6; }
+.process-step-orange { --step-color: #ed894d; --step-light: #fddac4; }
+.process-step-purple { --step-color: #7c68af; --step-light: #d7d1eb; }
+.process-step-turquoise { --step-color: #1097a4; --step-light: #c8e7ec; }
+
 .experience-cards { display: grid; gap: 1rem; }
 .experience-cards article { padding: 1.5rem; border: 1px solid var(--line); border-radius: 1rem; }
 .experience-cards article p:last-child { margin-bottom: 0; font-family: Georgia, "Times New Roman", serif; font-size: 1.4rem; line-height: 1.45; }
@@ -183,6 +206,9 @@ main {
   .section-heading { display: block; }
   .section-heading h2 { margin-top: 1rem; }
   .offer-list article { grid-template-columns: 1fr; }
+  .process { padding: 6rem 0; }
+  .process-heading { grid-template-columns: 1fr; gap: 1.5rem; }
+  .process-heading .eyebrow { grid-column: auto; }
   .contact { grid-template-columns: 1fr; }
 }
 
@@ -197,6 +223,14 @@ main {
   .hero h1 { font-size: clamp(3.8rem, 20vw, 5.4rem); }
   .hero-actions { flex-direction: column; }
   .button { text-align: center; }
+  .process-step { grid-template-columns: 6.6rem 1fr; min-height: 11.5rem; border-radius: 1.1rem; }
+  .process-marker { grid-template-columns: 1fr; align-content: center; justify-items: start; gap: 1rem; padding: 1.25rem; }
+  .process-number { font-size: 2.5rem; }
+  .process-marker svg { width: 2.5rem; }
+  .process-copy { padding: 1.4rem 1.1rem 1.4rem 2.1rem; }
+  .process-copy::before { top: 1.25rem; bottom: 1.25rem; left: 1rem; width: 2px; }
+  .process-copy p { font-size: .9rem; line-height: 1.5; }
+  .process-arrow { height: 3.25rem; }
   .contact { border-radius: 1.25rem; }
   .contact-links { flex-direction: column; }
   .site-footer { flex-direction: column; }
