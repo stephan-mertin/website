@@ -223,10 +223,10 @@ main {
   .hero h1 { font-size: clamp(3.8rem, 20vw, 5.4rem); }
   .hero-actions { flex-direction: column; }
   .button { text-align: center; }
-  .process-step { grid-template-columns: 6.6rem 1fr; min-height: 11.5rem; border-radius: 1.1rem; }
-  .process-marker { grid-template-columns: 1fr; align-content: center; justify-items: start; gap: 1rem; padding: 1.25rem; }
-  .process-number { font-size: 2.5rem; }
-  .process-marker svg { width: 2.5rem; }
+  .process-step { grid-template-columns: 5rem 1fr; min-height: 11.5rem; border-radius: 1.1rem; }
+  .process-marker { grid-template-columns: 1fr; align-content: center; justify-items: center; gap: .85rem; padding: .9rem; }
+  .process-number { font-size: 2.15rem; }
+  .process-marker svg { width: 2.15rem; }
   .process-copy { padding: 1.4rem 1.1rem 1.4rem 2.1rem; }
   .process-copy::before { top: 1.25rem; bottom: 1.25rem; left: 1rem; width: 2px; }
   .process-copy p { font-size: .9rem; line-height: 1.5; }
