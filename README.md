@@ -12,6 +12,8 @@ npm run dev
 ```
 
 Run `npm run build` to type-check and create the production site in `dist/`.
+The build also generates `sitemap-index.xml` and `robots.txt` from the production
+URL configured in `astro.config.mjs`.
 
 ## Deployment
 
