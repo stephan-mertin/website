@@ -2,9 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const phoneDisplay = "0172 4361676";
-const phoneHref = "+491724361676";
-const email = "begleitetreisen@gmail.com";
 ---
 
 <Layout
@@ -21,10 +18,6 @@ const email = "begleitetreisen@gmail.com";
           Persönliche Reisebegleitung für Menschen mit Handicap – aufmerksam,
           erfahren und so individuell wie Ihre Wünsche.
         </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href={`tel:${phoneHref}`}>Jetzt anrufen</a>
-          <a class="button button-secondary" href={`mailto:${email}`}>E-Mail schreiben</a>
-        </div>
       </div>
       <figure class="portrait-wrap">
         <img
@@ -97,7 +90,7 @@ const email = "begleitetreisen@gmail.com";
           </div>
           <div class="process-copy">
             <h3>Kontakt aufnehmen</h3>
-            <p>Sie melden sich bei mir – telefonisch oder per E-Mail.</p>
+            <p>Sie melden sich bei mir über den Reisenavigator.</p>
           </div>
         </article>
 
@@ -200,10 +193,6 @@ const email = "begleitetreisen@gmail.com";
           Erzählen Sie mir von Ihrem Reisewunsch. Ich freue mich darauf,
           gemeinsam mit Ihnen die passende Begleitung zu planen.
         </p>
-        <div class="contact-links">
-          <a href={`tel:${phoneHref}`}>{phoneDisplay}</a>
-          <a href={`mailto:${email}`}>{email}</a>
-        </div>
       </div>
 
       <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
