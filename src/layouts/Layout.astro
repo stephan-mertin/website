@@ -4,7 +4,7 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description: string;
-  page?: "home" | "legal";
+  page?: "home" | "legal" | "configurator";
 }
 
 const { title, description, page = "legal" } = Astro.props;
@@ -27,12 +27,12 @@ const homeUrl = `${base}/`;
       <a class="brand" href={homeUrl} aria-label="Begleitet Reisen – Startseite">
         <img src={`${base}/logo.jpeg`} alt="" width="200" height="200" />
       </a>
-      {page === "legal" ? (
+      {page !== "home" ? (
         <a class="back-link" href={homeUrl}>Zurück zur Startseite</a>
       ) : (
         <div class="header-contact">
           <p><span>Persönlich begleitet</span>Über 30 Jahre Erfahrung</p>
-          <a href="#contact">Kontakt aufnehmen</a>
+          <a href={`${base}/reisekonfigurator/`}>Reise konfigurieren</a>
         </div>
       )}
     </header>

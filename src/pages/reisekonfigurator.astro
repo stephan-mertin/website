@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const travelTypes = [
+  "Urlaub",
+  "Wochenendreise",
+  "Fußball",
+  "Konzert",
+  "Motorsport",
+  "Städtereise",
+  "Meer",
+  "Berge",
+  "Familie besuchen",
+  "Tagesausflug",
+  "Eigenes Wunschziel",
+];
+
+const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Länger"];
+---
+
+<Layout
+  title="Reisekonfigurator | Begleitet Reisen"
+  description="Stellen Sie Ihre persönliche Wunschreise mit Stephan Mertin zusammen."
+  page="configurator"
+>
+  <main>
+    <section class="configurator" aria-labelledby="configurator-title">
+      <header class="configurator-intro">
+        <p class="eyebrow">Ihre Wünsche, Ihr Tempo</p>
+        <h1 id="configurator-title">Reisekonfigurator</h1>
+        <p>
+          Erzählen Sie mir von Ihrer Wunschreise. Sie müssen noch nicht alles genau
+          wissen – ich melde mich persönlich bei Ihnen.
+        </p>
+      </header>
+
+      <form id="contact-form" class="configurator-form contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="172a40b3-f944-4b92-b437-2d147a603b79" />
+        <input type="hidden" name="subject" value="Neue Anfrage über den Reisekonfigurator" />
+        <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" />
+
+        <fieldset class="configurator-step">
+          <legend>1. Was möchten Sie erleben?</legend>
+          <p class="step-intro">Mehrfachauswahl möglich.</p>
+          <div class="choice-grid">
+            {travelTypes.map((type) => (
+              <label class="choice">
+                <input type="checkbox" name="Art der Reise" value={type} />
+                <span>{type}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="configurator-step">
+          <legend>2. Wie lange möchten Sie unterwegs sein?</legend>
+          <div class="choice-grid">
+            {durations.map((duration) => (
+              <label class="choice">
+                <input type="radio" name="Dauer" value={duration} />
+                <span>{duration}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="configurator-step">
+          <legend>3. Ihre Reiseidee</legend>
+          <div class="configurator-fields">
+            <div class="form-field form-field-wide">
+              <label for="destination">Gewünschtes Reiseziel</label>
+              <input id="destination" type="text" name="Gewünschtes Reiseziel" />
+            </div>
+            <label class="choice form-field-wide">
+              <input type="checkbox" name="Reiseziel noch offen" value="Ja" />
+              <span>Ich weiß noch nicht genau, wohin.</span>
+            </label>
+            <div class="form-field">
+              <label for="period">Gewünschter Zeitraum</label>
+              <input id="period" type="text" name="Zeitraum" placeholder="z. B. Juni 2027" />
+            </div>
+            <div class="form-field">
+              <label for="special-requests">Besondere Wünsche</label>
+              <input id="special-requests" type="text" name="Besondere Wünsche" />
+            </div>
+            <div class="form-field form-field-wide">
+              <label for="message">Erzählen Sie mir von Ihrem Wunsch</label>
+              <textarea id="message" name="Nachricht" rows="6"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="configurator-step">
+          <legend>4. Wie erreiche ich Sie?</legend>
+          <div class="configurator-fields">
+            <div class="form-field form-field-wide">
+              <label for="name">Name</label>
+              <input id="name" type="text" name="name" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="phone">Telefonnummer</label>
+              <input id="phone" type="tel" name="Telefonnummer" autocomplete="tel" />
+            </div>
+            <div class="form-field">
+              <label for="email">E-Mail-Adresse</label>
+              <input id="email" type="email" name="email" autocomplete="email" required />
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit">Reisewunsch absenden</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const status = form.querySelector<HTMLElement>(".form-status");
+      if (!submitButton || !status) return;
+
+      const originalText = submitButton.textContent;
+      submitButton.textContent = "Wird gesendet …";
+      submitButton.disabled = true;
+      status.textContent = "";
+      status.className = "form-status";
+
+      try {
+        const response = await fetch(form.action, { method: "POST", body: new FormData(form) });
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Die Anfrage konnte nicht gesendet werden.");
+        }
+        status.textContent = "Vielen Dank! Ihr Reisewunsch wurde erfolgreich gesendet.";
+        status.classList.add("form-status-success");
+        form.reset();
+      } catch (error) {
+        status.textContent = error instanceof Error
+          ? error.message
+          : "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.";
+        status.classList.add("form-status-error");
+      } finally {
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</Layout>
