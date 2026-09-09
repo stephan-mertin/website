@@ -2,12 +2,49 @@
 import Layout from "../layouts/Layout.astro";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const siteUrl = Astro.site ?? Astro.url;
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": new URL("/#business", siteUrl).href,
+      name: "Begleitet Reisen",
+      url: new URL("/", siteUrl).href,
+      logo: new URL("/logo.jpeg", siteUrl).href,
+      image: new URL("/stephan-mertin.jpeg", siteUrl).href,
+      description:
+        "Persönliche Reisebegleitung für Menschen mit Handicap durch Stephan Mertin.",
+      telephone: "+49 172 4361676",
+      email: "begleitetreisen@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Angerstraße 13",
+        postalCode: "90762",
+        addressLocality: "Fürth",
+        addressCountry: "DE",
+      },
+      founder: { "@id": new URL("/#stephan-mertin", siteUrl).href },
+    },
+    {
+      "@type": "Person",
+      "@id": new URL("/#stephan-mertin", siteUrl).href,
+      name: "Stephan Mertin",
+      jobTitle: "Reisebegleiter",
+      image: new URL("/stephan-mertin.jpeg", siteUrl).href,
+      worksFor: { "@id": new URL("/#business", siteUrl).href },
+    },
+  ],
+};
 ---
 
 <Layout
-  title="Begleitet Reisen mit Stephan Mertin"
-  description="Individuelle Reisebegleitung, Ausflüge und Freizeitaktivitäten mit über 30 Jahren Erfahrung."
+  title="Reisebegleitung für Menschen mit Handicap | Begleitet Reisen"
+  description="Persönliche Reisebegleitung für Menschen mit Handicap: Urlaubsreisen, Ausflüge und Veranstaltungen mit Stephan Mertin und über 30 Jahren Erfahrung."
   page="home"
+  image="/stephan-mertin.jpeg"
+  imageAlt="Stephan Mertin, persönlicher Reisebegleiter"
+  schema={schema}
 >
   <main>
     <section class="hero" aria-labelledby="hero-title">
