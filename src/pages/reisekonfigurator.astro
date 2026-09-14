@@ -91,11 +91,13 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
 
         <fieldset class="configurator-step">
           <legend>2. Ihre Reiseidee</legend>
-          <p class="step-intro">Wie lange möchten Sie unterwegs sein?</p>
+          <p class="step-intro">
+          Wie lange möchten Sie unterwegs sein?
+          </p>
           <div class="choice-grid">
             {durations.map((duration) => (
               <label class="choice">
-                <input type="radio" name="Dauer" value={duration} />
+                <input type="checkbox" name="Dauer" value={duration} />
                 <span>{duration}</span>
               </label>
             ))}
