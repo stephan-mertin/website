@@ -198,6 +198,17 @@ main {
 .info-hint-button:hover, .info-hint-button:focus-visible, .info-hint-button[aria-expanded="true"] { border-color: var(--orange); color: var(--orange); outline: none; }
 .info-hint-text { position: absolute; z-index: 2; bottom: calc(100% + .55rem); left: 50%; width: min(16rem, 75vw); padding: .75rem .85rem; border-radius: .65rem; color: var(--cream); background: var(--ink); box-shadow: 0 .5rem 1.5rem rgb(8 43 85 / 18%); font-size: .78rem; line-height: 1.45; opacity: 0; pointer-events: none; transform: translate(-50%, .25rem); transition: opacity 150ms ease, transform 150ms ease; }
 .info-hint:hover .info-hint-text, .info-hint:focus-within .info-hint-text, .info-hint-button[aria-expanded="true"] + .info-hint-text { opacity: 1; transform: translate(-50%, 0); }
+.support-groups { display: grid; gap: .75rem; }
+.support-group-choice { width: 100%; min-height: 4.25rem; margin: .2rem 0; }
+.support-group-choice span { line-height: 1.45; }
+.support-group-choice strong { color: var(--orange); font-size: 1.05rem; }
+.support-details { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 280ms ease, opacity 200ms ease; }
+.support-details-inner { display: grid; gap: .65rem; min-height: 0; overflow: hidden; }
+.support-details-inner > p { margin: .65rem 0 .15rem; font-size: .78rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.support-details.is-open { grid-template-rows: 1fr; opacity: 1; }
+.support-point { display: flex; align-items: flex-start; gap: .7rem; padding: .75rem .85rem; border-radius: .65rem; background: rgb(12 59 109 / 4%); cursor: pointer; line-height: 1.45; }
+.support-point:has(input:checked) { background: rgb(242 108 3 / 8%); }
+.support-point input { flex: 0 0 auto; width: 1rem; height: 1rem; margin: .2rem 0 0; accent-color: var(--orange); }
 .form-field input, .form-field textarea { width: 100%; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; outline: none; color: var(--ink); background: transparent; font: inherit; }
 .form-field textarea { min-height: 8rem; resize: none; line-height: 1.5; }
 .form-field input:focus, .form-field textarea:focus { border-bottom-color: var(--orange); box-shadow: 0 1px 0 var(--orange); }
@@ -263,6 +274,6 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .custom-destination, .destination-field { transition: none; }
+  .custom-destination, .destination-field, .support-details { transition: none; }
   .contact-cta:hover, .contact-form button[type="submit"]:hover { transform: none; }
 }
