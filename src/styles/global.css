@@ -181,11 +181,17 @@ main {
 .custom-destination-inner { min-height: 0; overflow: hidden; }
 .custom-destination .form-field { padding-top: 1.35rem; }
 .custom-destination.is-open { grid-template-rows: 1fr; opacity: 1; transform: translateY(0); }
+.step-fields { display: grid; gap: 1.35rem; margin-top: 1.35rem; }
+.destination-field { display: grid; grid-template-rows: 0fr; opacity: 0; transform: translateY(-.4rem); transition: grid-template-rows 280ms ease, opacity 200ms ease, transform 280ms ease; }
+.destination-field-inner { min-height: 0; overflow: hidden; }
+.destination-field.is-open { grid-template-rows: 1fr; opacity: 1; transform: translateY(0); }
+.destination-toggle { width: fit-content; }
 .configurator-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1.35rem 1.5rem; }
 .form-field-wide { grid-column: 1 / -1; }
 .contact-form { display: grid; gap: 1.35rem; padding: clamp(1.5rem, 4vw, 2.5rem); border-radius: 1.25rem; color: var(--ink); background: var(--cream); }
 .form-field { display: grid; gap: .5rem; }
 .form-field label { font-size: .72rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.configurator-step .form-field label { padding-top: .5rem; }
 .form-field input, .form-field textarea { width: 100%; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; outline: none; color: var(--ink); background: transparent; font: inherit; }
 .form-field textarea { min-height: 8rem; resize: none; line-height: 1.5; }
 .form-field input:focus, .form-field textarea:focus { border-bottom-color: var(--orange); box-shadow: 0 1px 0 var(--orange); }
@@ -251,6 +257,6 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .custom-destination { transition: none; }
+  .custom-destination, .destination-field { transition: none; }
   .contact-cta:hover, .contact-form button:hover { transform: none; }
 }

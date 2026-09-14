@@ -58,21 +58,40 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
           <div id="custom-destination-wrap" class="custom-destination" aria-hidden="true">
             <div class="custom-destination-inner">
               <div class="form-field">
-                <label for="custom-destination">Eigenes Wunschziel</label>
+                <label for="custom-destination">Was möchten Sie erleben?</label>
                 <input
                   id="custom-destination"
                   type="text"
-                  name="Eigenes Wunschziel"
-                  placeholder="Wo soll es hingehen?"
+                  name="Eigene Reiseidee"
+                  placeholder="Beschreiben Sie kurz Ihre Idee"
                   disabled
                 />
               </div>
             </div>
           </div>
+          <div class="step-fields">
+            <div class="form-field">
+              <label for="destination">Gewünschtes Reiseziel</label>
+              <div id="destination-wrap" class="destination-field is-open" aria-hidden="false">
+                <div class="destination-field-inner">
+                  <input id="destination" type="text" name="Gewünschtes Reiseziel" />
+                </div>
+              </div>
+            </div>
+            <label class="choice destination-toggle">
+              <input id="destination-unknown" type="checkbox" name="Reiseziel noch offen" value="Ja" />
+              <span>Ich weiß noch nicht genau, wohin.</span>
+            </label>
+            <div class="form-field">
+              <label for="message">Erzählen Sie mir von Ihrem Wunsch</label>
+              <textarea id="message" name="Nachricht" rows="6"></textarea>
+            </div>
+          </div>
         </fieldset>
 
         <fieldset class="configurator-step">
-          <legend>2. Wie lange möchten Sie unterwegs sein?</legend>
+          <legend>2. Ihre Reiseidee</legend>
+          <p class="step-intro">Wie lange möchten Sie unterwegs sein?</p>
           <div class="choice-grid">
             {durations.map((duration) => (
               <label class="choice">
@@ -81,19 +100,7 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
               </label>
             ))}
           </div>
-        </fieldset>
-
-        <fieldset class="configurator-step">
-          <legend>3. Ihre Reiseidee</legend>
-          <div class="configurator-fields">
-            <div class="form-field form-field-wide">
-              <label for="destination">Gewünschtes Reiseziel</label>
-              <input id="destination" type="text" name="Gewünschtes Reiseziel" />
-            </div>
-            <label class="choice form-field-wide">
-              <input type="checkbox" name="Reiseziel noch offen" value="Ja" />
-              <span>Ich weiß noch nicht genau, wohin.</span>
-            </label>
+          <div class="configurator-fields step-fields">
             <div class="form-field">
               <label for="period">Gewünschter Zeitraum</label>
               <input id="period" type="text" name="Zeitraum" placeholder="z. B. Juni 2027" />
@@ -102,15 +109,11 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
               <label for="special-requests">Besondere Wünsche</label>
               <input id="special-requests" type="text" name="Besondere Wünsche" />
             </div>
-            <div class="form-field form-field-wide">
-              <label for="message">Erzählen Sie mir von Ihrem Wunsch</label>
-              <textarea id="message" name="Nachricht" rows="6"></textarea>
-            </div>
           </div>
         </fieldset>
 
         <fieldset class="configurator-step">
-          <legend>4. Wie erreiche ich Sie?</legend>
+          <legend>3. Wie erreiche ich Sie?</legend>
           <div class="configurator-fields">
             <div class="form-field form-field-wide">
               <label for="name">Name</label>
@@ -138,6 +141,9 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
     const customDestinationToggle = document.querySelector<HTMLInputElement>("#custom-destination-toggle");
     const customDestinationWrap = document.querySelector<HTMLElement>("#custom-destination-wrap");
     const customDestination = document.querySelector<HTMLInputElement>("#custom-destination");
+    const destinationUnknown = document.querySelector<HTMLInputElement>("#destination-unknown");
+    const destinationWrap = document.querySelector<HTMLElement>("#destination-wrap");
+    const destination = document.querySelector<HTMLInputElement>("#destination");
 
     const updateCustomDestination = () => {
       const isOpen = customDestinationToggle?.checked ?? false;
@@ -150,8 +156,24 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
     };
 
     customDestinationToggle?.addEventListener("change", updateCustomDestination);
-    form?.addEventListener("reset", () => requestAnimationFrame(updateCustomDestination));
+
+    const updateDestination = () => {
+      const isOpen = !(destinationUnknown?.checked ?? false);
+      destinationWrap?.classList.toggle("is-open", isOpen);
+      destinationWrap?.setAttribute("aria-hidden", String(!isOpen));
+      if (destination) {
+        destination.disabled = !isOpen;
+        if (!isOpen) destination.value = "";
+      }
+    };
+
+    destinationUnknown?.addEventListener("change", updateDestination);
+    form?.addEventListener("reset", () => requestAnimationFrame(() => {
+      updateCustomDestination();
+      updateDestination();
+    }));
     updateCustomDestination();
+    updateDestination();
 
     form?.addEventListener("submit", async (event) => {
       event.preventDefault();
