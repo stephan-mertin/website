@@ -102,8 +102,16 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
           </div>
           <div class="configurator-fields step-fields">
             <div class="form-field">
-              <label for="period">Gewünschter Zeitraum</label>
-              <input id="period" type="text" name="Zeitraum" placeholder="z. B. Juni 2027" />
+              <div class="field-label-row">
+                <label for="period">Gewünschter Zeitraum</label>
+                <span class="info-hint">
+                  <button class="info-hint-button" type="button" aria-label="Hinweis zum gewünschten Zeitraum" aria-describedby="period-hint" aria-expanded="false">i</button>
+                  <span id="period-hint" class="info-hint-text" role="tooltip">
+                    Sie können den Zeitraum grob oder bereits ganz genau angeben.
+                  </span>
+                </span>
+              </div>
+              <input id="period" type="text" name="Zeitraum" placeholder="z. B. Juni 2028, Frühling 2027" />
             </div>
             <div class="form-field">
               <label for="special-requests">Besondere Wünsche</label>
@@ -168,6 +176,17 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
     };
 
     destinationUnknown?.addEventListener("change", updateDestination);
+    document.querySelectorAll<HTMLButtonElement>(".info-hint-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", String(!isOpen));
+      });
+    });
+    document.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest(".info-hint")) return;
+      document.querySelectorAll<HTMLButtonElement>(".info-hint-button[aria-expanded='true']")
+        .forEach((button) => button.setAttribute("aria-expanded", "false"));
+    });
     form?.addEventListener("reset", () => requestAnimationFrame(() => {
       updateCustomDestination();
       updateDestination();

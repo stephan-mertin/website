@@ -192,12 +192,18 @@ main {
 .form-field { display: grid; gap: .5rem; }
 .form-field label { font-size: .72rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 .configurator-step .form-field label { padding-top: .5rem; }
+.field-label-row { display: flex; align-items: center; gap: .45rem; }
+.info-hint { position: relative; display: inline-flex; margin-top: .5rem; }
+.info-hint-button { display: grid; place-items: center; width: 1.2rem; height: 1.2rem; padding: 0; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; font: 700 .72rem/1 Georgia, serif; cursor: help; }
+.info-hint-button:hover, .info-hint-button:focus-visible, .info-hint-button[aria-expanded="true"] { border-color: var(--orange); color: var(--orange); outline: none; }
+.info-hint-text { position: absolute; z-index: 2; bottom: calc(100% + .55rem); left: 50%; width: min(16rem, 75vw); padding: .75rem .85rem; border-radius: .65rem; color: var(--cream); background: var(--ink); box-shadow: 0 .5rem 1.5rem rgb(8 43 85 / 18%); font-size: .78rem; line-height: 1.45; opacity: 0; pointer-events: none; transform: translate(-50%, .25rem); transition: opacity 150ms ease, transform 150ms ease; }
+.info-hint:hover .info-hint-text, .info-hint:focus-within .info-hint-text, .info-hint-button[aria-expanded="true"] + .info-hint-text { opacity: 1; transform: translate(-50%, 0); }
 .form-field input, .form-field textarea { width: 100%; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; outline: none; color: var(--ink); background: transparent; font: inherit; }
 .form-field textarea { min-height: 8rem; resize: none; line-height: 1.5; }
 .form-field input:focus, .form-field textarea:focus { border-bottom-color: var(--orange); box-shadow: 0 1px 0 var(--orange); }
-.contact-form button { justify-self: start; padding: .9rem 1.25rem; border: 1px solid var(--ink); border-radius: 999px; color: var(--cream); background: var(--ink); font: inherit; font-size: .82rem; font-weight: 750; cursor: pointer; transition: transform 150ms, color 150ms, background 150ms; }
-.contact-form button:hover { color: var(--ink); background: transparent; transform: translateY(-2px); }
-.contact-form button:disabled { cursor: wait; opacity: .65; transform: none; }
+.contact-form button[type="submit"] { justify-self: start; padding: .9rem 1.25rem; border: 1px solid var(--ink); border-radius: 999px; color: var(--cream); background: var(--ink); font: inherit; font-size: .82rem; font-weight: 750; cursor: pointer; transition: transform 150ms, color 150ms, background 150ms; }
+.contact-form button[type="submit"]:hover { color: var(--ink); background: transparent; transform: translateY(-2px); }
+.contact-form button[type="submit"]:disabled { cursor: wait; opacity: .65; transform: none; }
 .form-status { min-height: 1.5em; margin: 0; font-size: .85rem; line-height: 1.5; }
 .form-status-success { color: #17683a; }
 .form-status-error { color: #a43818; }
@@ -258,5 +264,5 @@ main {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .custom-destination, .destination-field { transition: none; }
-  .contact-cta:hover, .contact-form button:hover { transform: none; }
+  .contact-cta:hover, .contact-form button[type="submit"]:hover { transform: none; }
 }
