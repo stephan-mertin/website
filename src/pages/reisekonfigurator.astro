@@ -45,10 +45,29 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
           <div class="choice-grid">
             {travelTypes.map((type) => (
               <label class="choice">
-                <input type="checkbox" name="Art der Reise" value={type} />
+                <input
+                  id={type === "Eigenes Wunschziel" ? "custom-destination-toggle" : undefined}
+                  type="checkbox"
+                  name="Art der Reise"
+                  value={type}
+                />
                 <span>{type}</span>
               </label>
             ))}
+          </div>
+          <div id="custom-destination-wrap" class="custom-destination" aria-hidden="true">
+            <div class="custom-destination-inner">
+              <div class="form-field">
+                <label for="custom-destination">Eigenes Wunschziel</label>
+                <input
+                  id="custom-destination"
+                  type="text"
+                  name="Eigenes Wunschziel"
+                  placeholder="Wo soll es hingehen?"
+                  disabled
+                />
+              </div>
+            </div>
           </div>
         </fieldset>
 
@@ -116,6 +135,23 @@ const durations = ["Tagesausflug", "Wochenende", "3–5 Tage", "1 Woche", "Läng
 
   <script>
     const form = document.querySelector<HTMLFormElement>("#contact-form");
+    const customDestinationToggle = document.querySelector<HTMLInputElement>("#custom-destination-toggle");
+    const customDestinationWrap = document.querySelector<HTMLElement>("#custom-destination-wrap");
+    const customDestination = document.querySelector<HTMLInputElement>("#custom-destination");
+
+    const updateCustomDestination = () => {
+      const isOpen = customDestinationToggle?.checked ?? false;
+      customDestinationWrap?.classList.toggle("is-open", isOpen);
+      customDestinationWrap?.setAttribute("aria-hidden", String(!isOpen));
+      if (customDestination) {
+        customDestination.disabled = !isOpen;
+        if (!isOpen) customDestination.value = "";
+      }
+    };
+
+    customDestinationToggle?.addEventListener("change", updateCustomDestination);
+    form?.addEventListener("reset", () => requestAnimationFrame(updateCustomDestination));
+    updateCustomDestination();
 
     form?.addEventListener("submit", async (event) => {
       event.preventDefault();
