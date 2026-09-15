@@ -71,7 +71,7 @@ const supportGroups = [
         <input type="hidden" name="subject" value="Neue Anfrage über den Reisekonfigurator" />
         <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" />
 
-        <fieldset class="configurator-step">
+        <fieldset class="configurator-step" data-configurator-step="1">
           <legend>1. Was möchten Sie erleben?</legend>
           <p class="step-intro">Mehrfachauswahl möglich.</p>
           <div class="choice-grid">
@@ -121,7 +121,7 @@ const supportGroups = [
           </div>
         </fieldset>
 
-        <fieldset class="configurator-step">
+        <fieldset class="configurator-step" data-configurator-step="2" hidden>
           <legend>2. Ihre Reiseidee</legend>
           <p class="step-intro">
           Wie lange möchten Sie unterwegs sein?
@@ -154,7 +154,7 @@ const supportGroups = [
           </div>
         </fieldset>
 
-        <fieldset class="configurator-step">
+        <fieldset class="configurator-step" data-configurator-step="3" hidden>
           <legend>3. Meine Unterstützung</legend>
           <p class="step-intro">Bitte ordnen Sie sich einer Gruppe zu. Es ist nur eine Auswahl möglich.</p>
           <div class="support-groups">
@@ -180,7 +180,7 @@ const supportGroups = [
           </div>
         </fieldset>
 
-        <fieldset class="configurator-step">
+        <fieldset class="configurator-step" data-configurator-step="4" hidden>
           <legend>4. Wie erreiche ich Sie?</legend>
           <div class="configurator-fields">
             <div class="form-field form-field-wide">
@@ -198,8 +198,8 @@ const supportGroups = [
           </div>
         </fieldset>
 
-        <button type="submit">Reisewunsch absenden</button>
-        <p class="form-status" role="status" aria-live="polite"></p>
+        <button type="submit" hidden>Reisewunsch absenden</button>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
       </form>
     </section>
   </main>
@@ -212,6 +212,37 @@ const supportGroups = [
     const destinationUnknown = document.querySelector<HTMLInputElement>("#destination-unknown");
     const destinationWrap = document.querySelector<HTMLElement>("#destination-wrap");
     const destination = document.querySelector<HTMLInputElement>("#destination");
+    const steps = Array.from(document.querySelectorAll<HTMLFieldSetElement>("[data-configurator-step]"));
+    const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const formStatus = form?.querySelector<HTMLElement>(".form-status");
+    const unlockedSteps = new Set([1]);
+
+    const revealStep = (stepNumber: number) => {
+      if (unlockedSteps.has(stepNumber)) return;
+
+      const step = steps.find((item) => Number(item.dataset.configuratorStep) === stepNumber);
+      if (!step) return;
+
+      unlockedSteps.add(stepNumber);
+      step.hidden = false;
+      step.classList.add("is-revealing");
+      step.addEventListener("animationend", () => step.classList.remove("is-revealing"), { once: true });
+
+      if (stepNumber === 4) {
+        if (submitButton) submitButton.hidden = false;
+        if (formStatus) formStatus.hidden = false;
+      }
+    };
+
+    const updateStepProgress = () => {
+      const hasTravelType = form?.querySelector<HTMLInputElement>('input[name="Art der Reise"]:checked');
+      const hasDuration = form?.querySelector<HTMLInputElement>('input[name="Dauer"]:checked');
+      const hasSupportGroup = form?.querySelector<HTMLInputElement>('input[name="Unterstützungsgruppe"]:checked');
+
+      if (hasTravelType) revealStep(2);
+      if (unlockedSteps.has(2) && hasDuration) revealStep(3);
+      if (unlockedSteps.has(3) && hasSupportGroup) revealStep(4);
+    };
 
     const updateCustomDestination = () => {
       const isOpen = customDestinationToggle?.checked ?? false;
@@ -264,10 +295,21 @@ const supportGroups = [
     document.querySelectorAll<HTMLInputElement>("[data-support-group]")
       .forEach((radio) => radio.addEventListener("change", updateSupportGroup));
     form?.addEventListener("reset", () => requestAnimationFrame(() => {
+      unlockedSteps.clear();
+      unlockedSteps.add(1);
+      steps.forEach((step) => {
+        const stepNumber = Number(step.dataset.configuratorStep);
+        step.hidden = stepNumber !== 1;
+        step.classList.remove("is-revealing");
+      });
+      if (submitButton) submitButton.hidden = true;
+      if (formStatus) formStatus.hidden = true;
       updateCustomDestination();
       updateDestination();
       updateSupportGroup();
     }));
+    form?.addEventListener("input", updateStepProgress);
+    form?.addEventListener("change", updateStepProgress);
     updateCustomDestination();
     updateDestination();
     updateSupportGroup();
