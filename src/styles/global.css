@@ -171,15 +171,6 @@ main {
 .configurator-intro > p:last-child { max-width: 40rem; margin-inline: auto; font-size: 1.1rem; line-height: 1.7; }
 .configurator-form { display: grid; gap: 1.5rem; }
 .configurator-step { margin: 0; padding: clamp(1.5rem, 5vw, 3rem); border: 1px solid var(--line); border-radius: 1.5rem; }
-.configurator-step[hidden], .configurator-form > [hidden] { display: none; }
-.configurator-step.is-revealing { animation: reveal-configurator-step 480ms cubic-bezier(.2, .75, .25, 1) both; }
-@keyframes reveal-configurator-step {
-  from { opacity: 0; transform: translateY(1.25rem) scale(.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .configurator-step.is-revealing { animation-duration: 1ms; }
-}
 .configurator-step legend { padding: 0 .75rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.65rem, 4vw, 2.5rem); }
 .step-intro { margin: 0 0 1.5rem; line-height: 1.6; }
 .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
