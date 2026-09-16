@@ -101,14 +101,14 @@ const eligibleGroups = [
         </fieldset>
 
         <div class="event-group-info">
-          <p>Dieser Ausflug ist für die Gruppen A, B und C gedacht.</p>
+          <p>Dieser Ausflug ist für die Teilnehmerkreise A, B und C gedacht.</p>
           <details>
-            <summary>Was bedeuten die Gruppen A, B, C und D?</summary>
+            <summary>Was bedeuten die Teilnehmerkreise A, B, C und D?</summary>
             <div class="event-group-cards">
               {eligibleGroups.map((group) => (
                 <article class:list={["event-group-card", { "is-unavailable": group.unavailable }]}>
                   <h3>
-                    <span>Gruppe {group.id}</span>
+                    <span>Teilnehmerkreis {group.id}</span>
                     {group.title}
                     {group.unavailable && <small>Nicht für diesen Ausflug vorgesehen</small>}
                   </h3>
