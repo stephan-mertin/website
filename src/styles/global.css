@@ -136,6 +136,13 @@ main {
 .next-trip-poster::before { position: absolute; z-index: -1; inset: 1rem -1rem -1rem 1rem; border-radius: 1.5rem; background: var(--mint); content: ""; }
 .next-trip-poster img { width: 100%; height: auto; border-radius: 1.5rem; box-shadow: 0 1.25rem 3.5rem rgb(8 43 85 / 16%); }
 
+.planned-events { padding: 0 0 8rem; }
+.planned-events > .eyebrow { margin: 0 0 1.5rem; color: var(--orange); }
+.planned-events-list { border-top: 1px solid var(--line); }
+.planned-events-list article { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid var(--line); }
+.planned-events-list h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 400; letter-spacing: -.025em; }
+.planned-events-list p { margin: 0; color: var(--turquoise); font-size: .82rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+
 .offers { padding: 8rem 0; color: var(--cream); background: var(--ink); box-shadow: 0 0 0 100vmax var(--ink); clip-path: inset(0 -100vmax); }
 .section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; margin-bottom: 5rem; }
 .section-heading h2 { margin-top: 0; }
@@ -274,6 +281,7 @@ main {
   .offer-list article { grid-template-columns: 1fr; }
   .next-trip { grid-template-columns: 1fr; padding: 6rem 0; }
   .next-trip-poster { width: min(calc(100% - 1rem), 27rem); margin-right: 1rem; justify-self: center; }
+  .planned-events { padding-bottom: 6rem; }
   .process { padding: 6rem 0; }
   .process-heading { grid-template-columns: 1fr; gap: 1.5rem; }
   .process-heading .eyebrow { grid-column: auto; }
@@ -292,6 +300,7 @@ main {
   .header-contact > a { padding: .85rem 1.05rem; font-size: .78rem; }
   .hero { min-height: auto; padding-bottom: 5rem; }
   .hero h1 { font-size: clamp(3.8rem, 20vw, 5.4rem); }
+  .planned-events-list article { grid-template-columns: 1fr; gap: .55rem; }
   .process-step { grid-template-columns: 5rem 1fr; min-height: 11.5rem; border-radius: 1.1rem; }
   .process-marker { grid-template-columns: 1fr; align-content: center; justify-items: center; gap: .85rem; padding: .9rem; }
   .process-number { font-size: 2.15rem; }
