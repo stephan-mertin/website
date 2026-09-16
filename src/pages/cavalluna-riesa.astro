@@ -1,0 +1,126 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<Layout
+  title="Cavalluna in Riesa 2026 – Platz anfragen | Begleitet Reisen"
+  description="Interesse am begleiteten Gruppenausflug zu Cavalluna in Riesa im Oktober 2026 anmelden. Aktuell sind noch zwei Plätze frei."
+  page="configurator"
+  image="/cavalluna_oct.jpeg"
+  imageAlt="Cavalluna – Die Farben des Lebens in Riesa, Oktober 2026"
+>
+  <main>
+    <section class="event-registration" aria-labelledby="event-title">
+      <header class="event-intro">
+        <div class="event-intro-copy">
+          <p class="eyebrow">Noch 2 Plätze frei</p>
+          <h1 id="event-title">Cavalluna<br />in Riesa</h1>
+          <p class="event-meta">Oktober 2026 · Die Farben des Lebens</p>
+          <p>
+            Sie möchten bei unserem nächsten Gruppenausflug dabei sein? Senden
+            Sie mir unverbindlich Ihre Anfrage. Ich melde mich persönlich, um
+            alle Einzelheiten und Ihren Unterstützungsbedarf zu besprechen.
+          </p>
+        </div>
+        <img
+          src={`${base}/cavalluna_oct.jpeg`}
+          alt="Cavalluna – Die Farben des Lebens in Riesa, Oktober 2026"
+          width="1079"
+          height="1570"
+        />
+      </header>
+
+      <form id="event-form" class="event-form contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="172a40b3-f944-4b92-b437-2d147a603b79" />
+        <input type="hidden" name="subject" value="Neue Anfrage: Cavalluna Riesa 2026" />
+        <input type="hidden" name="Ausflug" value="Cavalluna – Die Farben des Lebens, Riesa, Oktober 2026" />
+        <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" />
+
+        <div class="event-form-heading">
+          <p class="eyebrow">Unverbindliche Anfrage</p>
+          <h2>Ich interessiere mich für einen Platz.</h2>
+        </div>
+
+        <div class="configurator-fields">
+          <div class="form-field form-field-wide">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <label for="email">E-Mail-Adresse</label>
+            <input id="email" type="email" name="email" autocomplete="email" required />
+          </div>
+          <div class="form-field">
+            <label for="phone">Telefonnummer</label>
+            <input id="phone" type="tel" name="Telefonnummer" autocomplete="tel" />
+          </div>
+        </div>
+
+        <fieldset class="event-form-section">
+          <legend>Für wen fragen Sie an?</legend>
+          <div class="choice-grid event-choice-grid">
+            <label class="choice">
+              <input type="radio" name="Anfrage für" value="Mich selbst" required />
+              <span>Für mich selbst</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="Anfrage für" value="Eine andere Person" required />
+              <span>Für eine andere Person</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-field">
+          <label for="support">Unterstützungsbedarf</label>
+          <textarea id="support" name="Unterstützungsbedarf" rows="4" placeholder="Wobei wird während des Ausflugs Unterstützung benötigt?"></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Weitere Fragen oder Hinweise</label>
+          <textarea id="message" name="Nachricht" rows="5"></textarea>
+        </div>
+
+        <button type="submit">Platz unverbindlich anfragen</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#event-form");
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const status = form.querySelector<HTMLElement>(".form-status");
+      if (!submitButton || !status) return;
+
+      const originalText = submitButton.textContent;
+      submitButton.textContent = "Wird gesendet …";
+      submitButton.disabled = true;
+      status.textContent = "";
+      status.className = "form-status";
+
+      try {
+        const response = await fetch(form.action, { method: "POST", body: new FormData(form) });
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Die Anfrage konnte nicht gesendet werden.");
+        }
+        status.textContent = "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Ich melde mich persönlich bei Ihnen.";
+        status.classList.add("form-status-success");
+        form.reset();
+      } catch (error) {
+        status.textContent = error instanceof Error
+          ? error.message
+          : "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.";
+        status.classList.add("form-status-error");
+      } finally {
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</Layout>
