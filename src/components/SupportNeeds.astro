@@ -1,0 +1,88 @@
+---
+interface Props {
+  legend: string;
+  class?: string;
+}
+
+const { legend, class: className = "configurator-step" } = Astro.props;
+
+const supportGroups = [
+  { id: "A", title: "Ich bin weitgehend selbstständig", points: [
+    "Ich kann mich selbstständig fortbewegen.",
+    "Ich kann selbstständig an Gruppenaktivitäten teilnehmen.",
+    "Ich benötige im Alltag und bei der Körperpflege keine regelmäßige Unterstützung.",
+    "Ich kann selbstständig essen und trinken und benötige dabei keine Unterstützung.",
+    "Besondere Unterstützung bei der Ernährung benötige ich nicht.",
+  ] },
+  { id: "B", title: "Ich bin selbstständig, brauche aber gelegentlich Unterstützung", points: [
+    "Ich kann mich selbstständig fortbewegen.",
+    "Ich kann problemlos an Gruppenaktivitäten teilnehmen.",
+    "Im Alltag benötige ich grundsätzlich keine regelmäßige Unterstützung.",
+    "Ich kann selbstständig essen und trinken.",
+    "Gelegentliche Unterstützung, z. B. bei der Auswahl oder Vorbereitung von Speisen, kann hilfreich sein.",
+  ] },
+  { id: "C", title: "Ich benötige leichte Unterstützung", points: [
+    "Ich habe leichte Einschränkungen bei der Fortbewegung, z. B. beim Treppensteigen.",
+    "Ich kann mich mit einem Rollator weitgehend selbstständig bewegen.",
+    "Bei einzelnen Tätigkeiten im Alltag oder bei der Körperpflege benötige ich Unterstützung.",
+    "Bei den Mahlzeiten benötige ich möglicherweise Unterstützung, z. B. beim Kleinschneiden von Speisen.",
+    "Ich kann grundsätzlich selbstständig essen und trinken.",
+    "Ich kann am Reiseprogramm teilnehmen, benötige dabei aber ein angepasstes, eher ruhigeres Programm.",
+  ] },
+  { id: "D", title: "Ich benötige umfassende Unterstützung", points: [
+    "Ich bin auf einen Rollstuhl angewiesen oder habe einen hohen bzw. umfassenden Unterstützungsbedarf.",
+    "Ich benötige eine intensive Begleitung und gegebenenfalls besondere Überwachung.",
+    "Ich kann aufgrund meiner Orientierung oder meines Unterstützungsbedarfs nicht längere Zeit alleine gelassen werden.",
+    "Bei der Nahrungsaufnahme kann ein umfassender Unterstützungsbedarf bestehen.",
+    "Mein individueller Unterstützungsbedarf sollte vor der Reise persönlich besprochen werden.",
+  ] },
+];
+---
+
+<fieldset class:list={[className, "support-needs"]}>
+  <legend>{legend}</legend>
+  <p class="step-intro">Bitte ordnen Sie sich einer Gruppe zu. Es ist nur eine Auswahl möglich.</p>
+  <div class="support-groups">
+    {supportGroups.map((group) => (
+      <div class="support-group">
+        <label class="choice support-group-choice">
+          <input type="radio" name="Unterstützungsgruppe" value={group.id} data-support-group={group.id} />
+          <span><strong>{group.id}</strong> – {group.title}</span>
+        </label>
+        <div class="support-details" data-support-details={group.id} aria-hidden="true">
+          <div class="support-details-inner">
+            <p>Welche Aussagen treffen auf Sie zu?</p>
+            {group.points.map((point) => (
+              <label class="support-point">
+                <input type="checkbox" name={`Merkmale Gruppe ${group.id}`} value={point} disabled />
+                <span>{point}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</fieldset>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".support-needs").forEach((supportNeeds) => {
+    const updateSupportGroup = () => {
+      const selectedGroup = supportNeeds.querySelector<HTMLInputElement>("[data-support-group]:checked")?.dataset.supportGroup;
+      supportNeeds.querySelectorAll<HTMLElement>("[data-support-details]").forEach((details) => {
+        const isOpen = details.dataset.supportDetails === selectedGroup;
+        details.classList.toggle("is-open", isOpen);
+        details.setAttribute("aria-hidden", String(!isOpen));
+        details.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach((checkbox) => {
+          checkbox.disabled = !isOpen;
+          if (!isOpen) checkbox.checked = false;
+        });
+      });
+    };
+
+    supportNeeds.querySelectorAll<HTMLInputElement>("[data-support-group]")
+      .forEach((radio) => radio.addEventListener("change", updateSupportGroup));
+    supportNeeds.closest("form")?.addEventListener("reset", () => requestAnimationFrame(updateSupportGroup));
+    updateSupportGroup();
+  });
+</script>
