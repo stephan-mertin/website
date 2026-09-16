@@ -1,8 +1,35 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SupportNeeds from "../components/SupportNeeds.astro";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const eligibleGroups = [
+  {
+    id: "A",
+    title: "Weitgehend selbstständig",
+    description:
+      "Sie können sich selbstständig fortbewegen, an Gruppenaktivitäten teilnehmen und benötigen im Alltag, bei der Körperpflege sowie beim Essen und Trinken keine regelmäßige Unterstützung.",
+  },
+  {
+    id: "B",
+    title: "Selbstständig mit gelegentlicher Unterstützung",
+    description:
+      "Sie sind grundsätzlich selbstständig. Gelegentliche Unterstützung, zum Beispiel bei der Auswahl oder Vorbereitung von Speisen, kann hilfreich sein.",
+  },
+  {
+    id: "C",
+    title: "Leichte Unterstützung",
+    description:
+      "Sie haben leichte Einschränkungen bei der Fortbewegung oder benötigen bei einzelnen Tätigkeiten, der Körperpflege oder den Mahlzeiten Unterstützung. Ein angepasstes, eher ruhiges Programm ist für Sie passend.",
+  },
+  {
+    id: "D",
+    title: "Umfassende Unterstützung",
+    description:
+      "Sie sind auf einen Rollstuhl angewiesen oder benötigen eine intensive Begleitung, besondere Überwachung oder umfassende Unterstützung im Alltag und bei der Nahrungsaufnahme.",
+    unavailable: true,
+  },
+];
 ---
 
 <Layout
@@ -73,7 +100,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
           </div>
         </fieldset>
 
-        <SupportNeeds legend="Unterstützungsbedarf" class="event-form-section" />
+        <div class="event-group-info">
+          <p>Dieser Ausflug ist für die Gruppen A, B und C gedacht.</p>
+          <details>
+            <summary>Was bedeuten die Gruppen A, B, C und D?</summary>
+            <div class="event-group-cards">
+              {eligibleGroups.map((group) => (
+                <article class:list={["event-group-card", { "is-unavailable": group.unavailable }]}>
+                  <h3>
+                    <span>Gruppe {group.id}</span>
+                    {group.title}
+                    {group.unavailable && <small>Nicht für diesen Ausflug vorgesehen</small>}
+                  </h3>
+                  <p>{group.description}</p>
+                </article>
+              ))}
+            </div>
+          </details>
+        </div>
 
         <div class="form-field">
           <label for="message">Weitere Fragen oder Hinweise</label>
