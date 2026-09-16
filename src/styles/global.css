@@ -69,18 +69,21 @@ main {
 }
 
 .header-contact > a {
-  padding: .8rem 1.1rem;
+  padding: 1.05rem 1.5rem;
   border: 1px solid var(--ink);
   border-radius: 999px;
-  font-size: .75rem;
+  box-shadow: 0 .45rem 1.1rem rgb(8 43 85 / 12%);
+  font-size: .9rem;
   font-weight: 750;
   text-decoration: none;
-  transition: color 150ms, background 150ms;
+  transition: color 150ms, background 150ms, box-shadow 150ms, transform 150ms;
 }
 
 .header-contact > a:hover {
   color: var(--cream);
   background: var(--ink);
+  box-shadow: 0 .65rem 1.35rem rgb(8 43 85 / 20%);
+  transform: translateY(-2px);
 }
 
 .back-link { font-size: .82rem; text-underline-offset: .25em; }
@@ -127,8 +130,8 @@ main {
 .next-trip-copy h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3rem, 5.5vw, 5.4rem); font-weight: 400; line-height: .95; letter-spacing: -.05em; }
 .next-trip-availability { display: inline-block; margin: 1.5rem 0 1rem; padding: .55rem .8rem; border-radius: 999px; color: var(--cream); background: var(--orange); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .next-trip-copy > p:not(.eyebrow, .next-trip-availability) { max-width: 31rem; margin: .5rem 0 0; font-size: 1.08rem; line-height: 1.7; }
-.next-trip-cta { display: inline-flex; align-items: center; gap: 1.5rem; margin-top: 2rem; padding: .9rem 1.15rem; border: 1px solid var(--ink); border-radius: 999px; font-size: .82rem; font-weight: 800; text-decoration: none; transition: color 150ms, background 150ms, gap 150ms; }
-.next-trip-cta:hover { gap: 2rem; color: var(--cream); background: var(--ink); }
+.next-trip-cta { display: inline-flex; align-items: center; gap: 1.75rem; margin-top: 2rem; padding: 1.1rem 1.6rem; border: 1px solid var(--ink); border-radius: 999px; box-shadow: 0 .45rem 1.1rem rgb(8 43 85 / 12%); font-size: 1rem; font-weight: 800; text-decoration: none; transition: color 150ms, background 150ms, gap 150ms, transform 150ms, box-shadow 150ms; }
+.next-trip-cta:hover { gap: 2.15rem; color: var(--cream); background: var(--ink); box-shadow: 0 .65rem 1.35rem rgb(8 43 85 / 20%); transform: translateY(-2px); }
 .next-trip-poster { position: relative; width: min(100%, 27rem); margin: 0; justify-self: end; }
 .next-trip-poster::before { position: absolute; z-index: -1; inset: 1rem -1rem -1rem 1rem; border-radius: 1.5rem; background: var(--mint); content: ""; }
 .next-trip-poster img { width: 100%; height: auto; border-radius: 1.5rem; box-shadow: 0 1.25rem 3.5rem rgb(8 43 85 / 16%); }
@@ -173,8 +176,8 @@ main {
 .contact { margin-bottom: 5rem; padding: clamp(3rem, 7vw, 7rem); border-radius: 2rem; color: var(--cream); background: var(--orange); }
 .contact h2 { max-width: 8ch; font-size: clamp(4rem, 9vw, 8rem); }
 .contact-copy > p:not(.eyebrow) { max-width: 35rem; font-size: 1.15rem; line-height: 1.7; }
-.contact-cta { display: inline-flex; align-items: center; gap: 2rem; margin-top: 1.5rem; padding: 1rem 1.35rem; border-radius: 999px; color: var(--ink); background: var(--cream); font-size: .9rem; font-weight: 800; text-decoration: none; transition: gap 150ms, transform 150ms; }
-.contact-cta:hover { gap: 2.5rem; transform: translateY(-2px); }
+.contact-cta { display: inline-flex; align-items: center; gap: 2.25rem; margin-top: 1.5rem; padding: 1.2rem 1.7rem; border-radius: 999px; color: var(--ink); background: var(--cream); box-shadow: 0 .65rem 1.5rem rgb(8 43 85 / 18%); font-size: 1.05rem; font-weight: 800; text-decoration: none; transition: gap 150ms, transform 150ms, box-shadow 150ms; }
+.contact-cta:hover { gap: 2.65rem; box-shadow: 0 .85rem 1.75rem rgb(8 43 85 / 24%); transform: translateY(-2px); }
 
 .configurator { max-width: 58rem; margin-inline: auto; padding: 2rem 0 8rem; }
 .configurator-intro { margin-bottom: 4rem; text-align: center; }
@@ -286,7 +289,7 @@ main {
   .brand img { width: 8.5rem; height: 8.5rem; }
   .header-contact { gap: .6rem; }
   .header-contact p { display: none; }
-  .header-contact > a { padding: .7rem .85rem; font-size: .65rem; }
+  .header-contact > a { padding: .85rem 1.05rem; font-size: .78rem; }
   .hero { min-height: auto; padding-bottom: 5rem; }
   .hero h1 { font-size: clamp(3.8rem, 20vw, 5.4rem); }
   .process-step { grid-template-columns: 5rem 1fr; min-height: 11.5rem; border-radius: 1.1rem; }
@@ -307,6 +310,6 @@ main {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .custom-destination, .destination-field, .support-details { transition: none; }
-  .contact-cta:hover, .contact-form button[type="submit"]:hover { transform: none; }
+  .header-contact > a:hover, .contact-cta:hover, .contact-form button[type="submit"]:hover { transform: none; }
   .next-trip-cta:hover { gap: 1.5rem; }
 }
