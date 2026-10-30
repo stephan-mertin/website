@@ -138,6 +138,8 @@ main {
 
 .travel-program { padding: clamp(3rem, 6vw, 6rem) 0; border-top: 1px solid var(--line); }
 .travel-program img { display: block; width: min(100%, 67.5rem); height: auto; margin-inline: auto; border-radius: 1.5rem; box-shadow: 0 1.25rem 3.5rem rgb(8 43 85 / 16%); }
+.travel-program-note { max-width: 48rem; margin: 1.75rem auto 0; padding-inline: 1.25rem; color: var(--ink); font-size: 1.05rem; line-height: 1.75; text-align: center; }
+.travel-program-note a { color: var(--turquoise); font-weight: 800; text-decoration: underline; text-underline-offset: .2em; }
 
 .planned-events { padding: 0 0 8rem; }
 .planned-events > .eyebrow { margin: 0 0 1.5rem; color: var(--orange); }
