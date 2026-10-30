@@ -8,6 +8,10 @@ configured for deployment to GitHub Pages at
 
 Die Website wird laufend weiterentwickelt.
 
+## Website einfach bearbeiten
+
+Eine Schritt-für-Schritt-Anleitung für Änderungen ohne Programmierkenntnisse findest du in [ANLEITUNG-EINFACH.md](./ANLEITUNG-EINFACH.md). Sie erklärt, wie Texte und Bilder direkt über GitHub ausgetauscht und Änderungen veröffentlicht werden.
+
 ## Local development
 
 ```sh
