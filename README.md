@@ -32,3 +32,4 @@ and deploys it to GitHub Pages. In the repository settings, select
 The custom domain is configured in `astro.config.mjs` and `public/CNAME`.
 GitHub Pages must also have `stephan-mertin.de` entered under
 **Settings → Pages → Custom domain**.
+
