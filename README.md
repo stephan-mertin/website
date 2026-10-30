@@ -4,6 +4,10 @@ A small static site built with [Astro](https://astro.build/) and React. It is
 configured for deployment to GitHub Pages at
 `https://stephan-mertin.de`.
 
+## Hinweis
+
+Die Website wird laufend weiterentwickelt.
+
 ## Local development
 
 ```sh
