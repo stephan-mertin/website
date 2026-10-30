@@ -136,6 +136,9 @@ main {
 .next-trip-poster::before { position: absolute; z-index: -1; inset: 1rem -1rem -1rem 1rem; border-radius: 1.5rem; background: var(--mint); content: ""; }
 .next-trip-poster img { width: 100%; height: auto; border-radius: 1.5rem; box-shadow: 0 1.25rem 3.5rem rgb(8 43 85 / 16%); }
 
+.travel-program { padding: clamp(3rem, 6vw, 6rem) 0; border-top: 1px solid var(--line); }
+.travel-program img { display: block; width: min(100%, 67.5rem); height: auto; margin-inline: auto; border-radius: 1.5rem; box-shadow: 0 1.25rem 3.5rem rgb(8 43 85 / 16%); }
+
 .planned-events { padding: 0 0 8rem; }
 .planned-events > .eyebrow { margin: 0 0 1.5rem; color: var(--orange); }
 .planned-events-list { border-top: 1px solid var(--line); }
