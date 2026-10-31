@@ -76,7 +76,8 @@ const socialImageUrl = new URL(`${base}${image}`, siteUrl);
     <footer class="site-footer">
       <p>Begleitet Reisen · Stephan Mertin</p>
       {page === "home" && (
-        <p class="visitor-counter">Besucher insgesamt: <span id="visitor-count"></span></p>
+        <p class="visitor-counter">Besucher insgesamt:</p>
+        <div id="visitor-count" class="visitor-counter-value"></div>
       )}
       <nav aria-label="Rechtliche Informationen">
         <a href={`${base}/impressum/`}>Impressum</a>
