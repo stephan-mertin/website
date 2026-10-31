@@ -187,8 +187,6 @@ main {
 
 .contact { margin-bottom: 5rem; padding: clamp(3rem, 7vw, 7rem); border-radius: 2rem; color: var(--cream); background: var(--orange); }
 .contact h2 { max-width: 8ch; font-size: clamp(4rem, 9vw, 8rem); }
-.offers-mug-image { display: flex; justify-content: center; width: 100%; margin: 2rem auto 0; }
-.offers-mug-image img { display: block; width: 11rem; max-width: 100%; height: auto; object-fit: contain; object-position: center; border-radius: 1rem; box-shadow: 0 1rem 2.5rem rgb(8 43 85 / 20%); }
 .offers-poster { display: block; width: 100%; max-width: 27rem; height: auto; justify-self: center; border-radius: 1rem; box-shadow: 0 1rem 2.5rem rgb(8 43 85 / 20%); }
 .contact-copy > p:not(.eyebrow) { max-width: 35rem; font-size: 1.15rem; line-height: 1.7; }
 .contact-cta { display: inline-flex; align-items: center; gap: 2.25rem; margin-top: 1.5rem; padding: 1.2rem 1.7rem; border-radius: 999px; color: var(--ink); background: var(--cream); box-shadow: 0 .65rem 1.5rem rgb(8 43 85 / 18%); font-size: 1.05rem; font-weight: 800; text-decoration: none; transition: gap 150ms, transform 150ms, box-shadow 150ms; }
