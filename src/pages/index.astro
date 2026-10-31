@@ -128,15 +128,16 @@ const schema = {
           </article>
         </div>
       </div>
-      <img
-        class="offers-poster"
-        src={`${base}/wohin-soll-die-reise-gehen.jpeg`}
-        alt="Reisecollage mit Stephan Mertin, Urlaubszielen und Menschen mit Rollstuhl und Rollator. Wohin soll deine Reise gehen?"
-        width="1080"
-        height="1878"
-        loading="lazy"
-        decoding="async"
-      />
+      <div class="offers-side-image">
+        <img
+          src={`${base}/tasse-stephan-mertin-mini.jpg`}
+          alt="Emaille-Reisebecher mit dem Logo von Stephan Mertin am See"
+          width="160"
+          height="225"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
     </section>
 
     <section class="process" aria-labelledby="process-title">
@@ -374,7 +375,22 @@ const schema = {
           height: 110px;
         }
       }
-    </style>
+          .offers-side-image {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        margin-top: 1rem;
+      }
+      .offers-side-image img {
+        display: block;
+        width: 112px;
+        height: auto;
+        max-height: 158px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 4px 14px rgb(20 45 70 / 16%);
+      }
+</style>
 
     <script>
       const photoViewer = document.getElementById("classic-viewer") as HTMLDialogElement | null;
