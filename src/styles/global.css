@@ -344,3 +344,13 @@ main {
   .header-contact > a:hover, .contact-cta:hover, .contact-form button[type="submit"]:hover { transform: none; }
   .next-trip-cta:hover { gap: 1.5rem; }
 }
+
+.mug-slogan {
+  margin: 1.25rem auto 0;
+  max-width: 42rem;
+  color: #173b63;
+  font-size: clamp(1.2rem, 2.8vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+}
