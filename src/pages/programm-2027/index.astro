@@ -39,7 +39,10 @@ const months = [
                 <th scope="row" class={`month-cell month-cell-${index + 1}`}>{month}</th>
                 {month === "Dezember" ? (
                   <>
-                    <td><strong class="offer-name">Sascha Grammel</strong></td>
+                    <td>
+                      <strong class="offer-name">Sascha Grammel</strong>
+                      <span class="places-available">Noch 4 Plätze frei</span>
+                    </td>
                     <td class="offer-date">10.12.2027</td>
                     <td>–</td>
                   </>
@@ -107,6 +110,7 @@ const months = [
     .month-row-12 td, .month-cell-12 { background: #e5eff9; }
     .offer-name, .offer-date { color: #087e8b; font-weight: 800; }
     .offer-name { letter-spacing: .01em; }
+    .places-available { display: block; margin-top: .35rem; color: #0c3b6d; font-size: .88rem; font-weight: 700; }
     .to-be-announced { color: #56738d; }
     .table-note { margin: 1rem 0 0; color: #56738d; font-size: .9rem; line-height: 1.6; }
     .highlights { margin-top: 5rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 1.25rem; color: #082b55; background: #dceef8; }
