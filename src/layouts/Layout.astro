@@ -76,8 +76,11 @@ const socialImageUrl = new URL(`${base}${image}`, siteUrl);
     <footer class="site-footer">
       <p>Begleitet Reisen · Stephan Mertin</p>
       {page === "home" && (
-        <p class="visitor-counter">Besucher insgesamt:</p>
-        <div id="visitor-count" class="visitor-counter-value"></div>
+        <div class="visitor-counter">
+          <p>Diese Website wurde bisher</p>
+          <div id="visitor-count" class="visitor-counter-value"></div>
+          <p>mal besucht.</p>
+        </div>
       )}
       <nav aria-label="Rechtliche Informationen">
         <a href={`${base}/impressum/`}>Impressum</a>
@@ -102,7 +105,24 @@ const socialImageUrl = new URL(`${base}${image}`, siteUrl);
               window.goatcounter.visit_count({
                 append: "#visitor-count",
                 path: "TOTAL",
-                no_branding: true
+                no_branding: true,
+                style: `
+                  div {
+                    border: 1px solid #0c3b6d;
+                    border-radius: 10px;
+                    background: #f2f6fa;
+                    color: #0c3b6d;
+                    box-sizing: border-box;
+                    width: 100%;
+                    max-width: 260px;
+                    margin: 8px auto;
+                  }
+                  #gcvc-for { display: none; }
+                  #gcvc-views {
+                    color: #0c3b6d;
+                    font-weight: 700;
+                  }
+                `
               });
             } else if (attempts > 100) {
               clearInterval(timer);
