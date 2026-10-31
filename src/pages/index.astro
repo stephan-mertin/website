@@ -377,9 +377,9 @@ const schema = {
     </style>
 
     <script>
-      const photoViewer = document.getElementById("classic-viewer");
-      const photoViewerImage = document.getElementById("classic-viewer-image");
-      const photoViewerClose = document.getElementById("classic-viewer-close");
+      const photoViewer = document.getElementById("classic-viewer") as HTMLDialogElement | null;
+      const photoViewerImage = document.getElementById("classic-viewer-image") as HTMLImageElement | null;
+      const photoViewerClose = document.getElementById("classic-viewer-close") as HTMLButtonElement | null;
 
       document.querySelectorAll(".classic-thumb").forEach((button) => {
         button.addEventListener("click", () => {
