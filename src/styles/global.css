@@ -148,7 +148,10 @@ main {
 .planned-events-list h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 400; letter-spacing: -.025em; }
 .planned-events-list p { margin: 0; color: var(--turquoise); font-size: .82rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 
-.offers { display: grid; grid-template-columns: 1.35fr 1fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding: 8rem 0; color: var(--cream); background: var(--ink); box-shadow: 0 0 0 100vmax var(--ink); clip-path: inset(0 -100vmax); }
+.offers { display: grid; grid-template-columns: 1fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding: 8rem 0; color: var(--cream); background: var(--ink); box-shadow: 0 0 0 100vmax var(--ink); clip-path: inset(0 -100vmax); }
+.offers-content { width: min(100%, 52rem); margin-inline: auto; }
+.offers-feature-image { display: flex; justify-content: center; width: 100%; margin: 2rem auto 0; }
+.offers-feature-image img { display: block; width: 12rem; max-width: 100%; height: auto; object-fit: contain; border-radius: 1rem; box-shadow: 0 1rem 2.5rem rgb(8 43 85 / 20%); }
 .section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; margin-bottom: 5rem; }
 .section-heading h2 { margin-top: 0; }
 .offer-list { border-top: 1px solid rgb(244 240 231 / 30%); }
