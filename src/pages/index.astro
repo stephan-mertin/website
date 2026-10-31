@@ -273,19 +273,23 @@ const schema = {
         <h2 id="classic-gallery-title">Insel Classic 2026, Uhyst a.d. Spree</h2>
       </div>
       <div class="classic-gallery-grid">
-        <div class="classic-thumb">
+        <button class="classic-thumb" type="button" data-image-src={`${base}/20260808_112211.jpg`} data-image-alt="Insel Classic 2026 – Bild 1">
           <img src={`${base}/20260808_112211.jpg`} alt="Insel Classic 2026 – Bild 1" loading="lazy" decoding="async" />
-        </div>
-        <div class="classic-thumb">
+        </button>
+        <button class="classic-thumb" type="button" data-image-src={`${base}/20260808_113132.jpg`} data-image-alt="Insel Classic 2026 – Bild 2">
           <img src={`${base}/20260808_113132.jpg`} alt="Insel Classic 2026 – Bild 2" loading="lazy" decoding="async" />
-        </div>
-        <div class="classic-thumb">
+        </button>
+        <button class="classic-thumb" type="button" data-image-src={`${base}/20260808_141513.jpg`} data-image-alt="Insel Classic 2026 – Bild 3">
           <img src={`${base}/20260808_141513.jpg`} alt="Insel Classic 2026 – Bild 3" loading="lazy" decoding="async" />
-        </div>
-        <div class="classic-thumb">
+        </button>
+        <button class="classic-thumb" type="button" data-image-src={`${base}/20260808_164155.jpg`} data-image-alt="Insel Classic 2026 – Bild 4">
           <img src={`${base}/20260808_164155.jpg`} alt="Insel Classic 2026 – Bild 4" loading="lazy" decoding="async" />
-        </div>
+        </button>
       </div>
+      <dialog class="classic-viewer" id="classic-viewer">
+        <button class="classic-close-button" type="button" id="classic-viewer-close">Zurück zur Galerie</button>
+        <img id="classic-viewer-image" src="" alt="" />
+      </dialog>
     </section>
 
     <style>
@@ -307,14 +311,60 @@ const schema = {
       .classic-thumb {
         display: block;
         overflow: hidden;
+        padding: 0;
+        border: 0;
         border-radius: 10px;
         background: #e5ebf0;
+        cursor: zoom-in;
       }
       .classic-thumb img {
         display: block;
         width: 100%;
         height: 125px;
         object-fit: cover;
+      }
+      .classic-viewer {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        max-height: none;
+        margin: 0;
+        padding: 4.5rem 1rem 1rem;
+        border: 0;
+        background: rgb(0 0 0 / 92%);
+      }
+      .classic-viewer[open] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .classic-viewer::backdrop {
+        background: rgb(0 0 0 / 92%);
+      }
+      .classic-viewer > img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+      .classic-close-button {
+        position: fixed;
+        top: max(1rem, env(safe-area-inset-top));
+        right: 1rem;
+        z-index: 2;
+        min-height: 46px;
+        padding: 0.75rem 1.1rem;
+        border: 0;
+        border-radius: 999px;
+        background: #fff;
+        color: #17324d;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
       }
       @media (max-width: 640px) {
         .classic-gallery-grid {
@@ -325,6 +375,28 @@ const schema = {
         }
       }
     </style>
+
+    <script>
+      const photoViewer = document.getElementById("classic-viewer");
+      const photoViewerImage = document.getElementById("classic-viewer-image");
+      const photoViewerClose = document.getElementById("classic-viewer-close");
+
+      document.querySelectorAll(".classic-thumb").forEach((button) => {
+        button.addEventListener("click", () => {
+          const src = button.getAttribute("data-image-src");
+          const alt = button.getAttribute("data-image-alt") || "";
+          if (!photoViewer || !photoViewerImage || !src) return;
+          photoViewerImage.src = src;
+          photoViewerImage.alt = alt;
+          photoViewer.showModal();
+        });
+      });
+
+      photoViewerClose?.addEventListener("click", () => photoViewer?.close());
+      photoViewer?.addEventListener("click", (event) => {
+        if (event.target === photoViewer) photoViewer.close();
+      });
+    </script>
 
   </main>
 </Layout>
