@@ -37,7 +37,16 @@ const months = [
             {months.map((month, index) => (
               <tr class={`month-row month-row-${index + 1}`}>
                 <th scope="row" class={`month-cell month-cell-${index + 1}`}>{month}</th>
-                {month === "Dezember" ? (
+                {month === "November" ? (
+                  <>
+                    <td>
+                      <strong class="offer-name">KARAT – 45 Jahre „Der blaue Planet“</strong>
+                      <span class="places-available">Noch 7 Plätze frei</span>
+                    </td>
+                    <td class="offer-date">20.11.2027</td>
+                    <td>–</td>
+                  </>
+                ) : month === "Dezember" ? (
                   <>
                     <td>
                       <strong class="offer-name">Sascha Grammel</strong>
