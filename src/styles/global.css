@@ -120,6 +120,17 @@ main {
 .portrait-wrap figcaption { display: flex; justify-content: space-between; padding-top: 1rem; border-bottom: 1px solid var(--ink); font-size: .72rem; letter-spacing: .08em; line-height: 2.2; text-transform: uppercase; }
 
 .section-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(3rem, 10vw, 10rem); padding: 9rem 0; border-top: 1px solid var(--line); }
+.about {
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+  color: #082b55;
+  background: #dceef8;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 0 100vmax #dceef8;
+  clip-path: inset(0 -100vmax);
+}
+.about h2 { color: #082b55; font-weight: 700; }
+.about .section-copy { color: #082b55; font-weight: 700; }
+.about .section-copy strong { font-weight: 800; }
 .section-grid h2, .section-heading h2 { max-width: 13ch; margin: 1rem 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 400; line-height: .98; letter-spacing: -.045em; }
 .section-copy { max-width: 38rem; font-size: 1rem; line-height: 1.8; }
 .section-copy .lead { margin-top: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.5rem, 3vw, 2.15rem); line-height: 1.35; }
