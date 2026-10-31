@@ -116,7 +116,7 @@ const socialImageUrl = new URL(`${base}${image}`, siteUrl);
           });
           request.open(
             "GET",
-            "https://stephan-mertin.goatcounter.com/counter/TOTAL.json?refresh=" + Date.now()
+            "https://stephan-mertin.goatcounter.com/counter//.json?refresh=" + Date.now()
           );
           request.send();
         })();
