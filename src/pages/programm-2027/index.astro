@@ -37,9 +37,19 @@ const months = [
             {months.map((month) => (
               <tr>
                 <th scope="row">{month}</th>
-                <td class="to-be-announced">Weitere Angebote folgen</td>
-                <td>–</td>
-                <td>–</td>
+                {month === "Dezember" ? (
+                  <>
+                    <td><strong>Sascha Grammel</strong></td>
+                    <td>10.12.2027</td>
+                    <td>–</td>
+                  </>
+                ) : (
+                  <>
+                    <td class="to-be-announced">Weitere Angebote folgen</td>
+                    <td>–</td>
+                    <td>–</td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>
