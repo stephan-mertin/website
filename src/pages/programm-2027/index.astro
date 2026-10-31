@@ -1,0 +1,106 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const months = [
+  "Januar", "Februar", "März", "April", "Mai", "Juni",
+  "Juli", "August", "September", "Oktober", "November", "Dezember",
+];
+---
+
+<Layout
+  title="Programm 2027 – Jahresübersicht | Begleitet Reisen"
+  description="Die Jahresübersicht 2027 von Begleitet Reisen: Reisen, Ausflüge und Veranstaltungen mit Stephan Mertin."
+  page="legal"
+  image="/reiseprogramm-2027.jpeg"
+  imageAlt="Programm 2027 von Begleitet Reisen"
+>
+  <main class="annual-program">
+    <header class="program-heading">
+      <p class="eyebrow">Begleitet Reisen · Stephan Mertin</p>
+      <h1>Programm <em>2027</em></h1>
+      <p>Hier finden Sie die geplanten Reisen, Ausflüge und Veranstaltungen im Jahresüberblick. Die Übersicht wird laufend ergänzt.</p>
+    </header>
+
+    <section class="year-table-section" aria-labelledby="year-table-title">
+      <h2 id="year-table-title">Der Jahresplan</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Monat</th>
+              <th scope="col">Veranstaltung / Reise</th>
+              <th scope="col">Datum</th>
+              <th scope="col">Ort</th>
+            </tr>
+          </thead>
+          <tbody>
+            {months.map((month) => (
+              <tr>
+                <th scope="row">{month}</th>
+                <td class="to-be-announced">Weitere Angebote folgen</td>
+                <td>–</td>
+                <td>–</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Die konkreten Termine und Veranstaltungsorte werden ergänzt, sobald sie feststehen.</p>
+    </section>
+
+    <section class="highlights" aria-labelledby="highlights-title">
+      <h2 id="highlights-title">Geplante Höhepunkte</h2>
+      <p>Unter anderem sind für 2027 folgende Angebote vorgesehen:</p>
+      <ul>
+        <li>AIDA-Kreuzfahrt</li>
+        <li>Städtereisen nach Leipzig und Fürth</li>
+        <li>KARAT</li>
+        <li>Cavalluna</li>
+        <li>Sascha Grammel</li>
+      </ul>
+    </section>
+
+    <section class="program-contact">
+      <h2>Ist etwas für Sie dabei?</h2>
+      <p>Wenn Sie Interesse an einer Reise oder Veranstaltung haben, nehmen Sie gerne über den Reisekonfigurator Kontakt mit mir auf. Gemeinsam besprechen wir Ihre Wünsche.</p>
+      <a class="program-cta" href="../reisekonfigurator/">Zum Reisekonfigurator <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <style>
+    .annual-program { max-width: 68rem; padding: 2rem 0 7rem; }
+    .program-heading { max-width: 52rem; margin: 0 auto 4rem; text-align: center; }
+    .program-heading .eyebrow { color: #339ca8; }
+    .program-heading h1 { margin: .75rem 0 1.25rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.5rem, 8vw, 6.5rem); font-weight: 400; line-height: .95; letter-spacing: -.06em; }
+    .program-heading h1 em { color: #f26c03; font-weight: 400; }
+    .program-heading > p:last-child { max-width: 42rem; margin-inline: auto; font-size: 1.08rem; line-height: 1.7; }
+    .year-table-section h2, .highlights h2, .program-contact h2 { margin: 0 0 1.5rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -.035em; }
+    .table-scroll { overflow-x: auto; border: 1px solid rgb(12 59 109 / 18%); border-radius: 1rem; box-shadow: 0 .8rem 2rem rgb(8 43 85 / 7%); }
+    table { width: 100%; border-collapse: collapse; background: #fff; text-align: left; }
+    th, td { padding: 1rem 1.1rem; border-bottom: 1px solid rgb(12 59 109 / 13%); vertical-align: top; }
+    thead th { color: #fff; background: #0c3b6d; font-size: .78rem; letter-spacing: .07em; text-transform: uppercase; }
+    tbody th { width: 17%; color: #0c3b6d; background: #eaf3f9; font-weight: 800; }
+    tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:nth-child(even) td { background: #f7fafc; }
+    .to-be-announced { color: #56738d; }
+    .table-note { margin: 1rem 0 0; color: #56738d; font-size: .9rem; line-height: 1.6; }
+    .highlights { margin-top: 5rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 1.25rem; color: #082b55; background: #dceef8; }
+    .highlights p { line-height: 1.6; }
+    .highlights ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 2rem; margin: 1.25rem 0 0; padding-left: 1.25rem; line-height: 1.8; }
+    .program-contact { margin-top: 4rem; padding: clamp(2rem, 5vw, 4rem); border-radius: 1.5rem; color: #fff; background: #0c3b6d; }
+    .program-contact p { max-width: 45rem; font-size: 1.05rem; line-height: 1.7; }
+    .program-cta { display: inline-flex; align-items: center; gap: 1.5rem; margin-top: 1rem; padding: 1rem 1.4rem; border-radius: 999px; color: #0c3b6d; background: #fff; font-weight: 800; text-decoration: none; }
+    .program-cta:hover { background: #dceef8; }
+    @media (max-width: 42rem) {
+      .annual-program { padding-top: 1rem; }
+      .table-scroll { overflow: visible; border: 0; box-shadow: none; }
+      table, tbody { display: block; }
+      thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+      tbody tr { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem .75rem; margin-bottom: .85rem; padding: 1rem; border: 1px solid rgb(12 59 109 / 18%); border-radius: .85rem; background: #fff; }
+      tbody th { grid-column: 1 / -1; width: auto; padding: 0 0 .5rem; background: transparent; font-size: 1.1rem; }
+      tbody td { padding: .25rem 0; border: 0; background: transparent !important; font-size: .9rem; }
+      tbody td:nth-child(2) { grid-column: 1 / -1; }
+      .highlights ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</Layout>
