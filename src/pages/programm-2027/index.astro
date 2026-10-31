@@ -67,10 +67,19 @@ const months = [
                 ) : month === "November" ? (
                   <>
                     <td>
-                      <strong class="offer-name">KARAT – 45 Jahre „Der blaue Planet“</strong>
-                      <span class="places-available">Noch 7 Plätze frei</span>
+                      <div class="event-entry">
+                        <strong class="offer-name">KARAT – 45 Jahre „Der blaue Planet“</strong>
+                        <span class="places-available">Noch 7 Plätze frei</span>
+                      </div>
+                      <div class="event-entry">
+                        <strong class="offer-name">Eishockey: Füchse Weißwasser</strong>
+                        <span class="places-available">Noch 7 Plätze frei</span>
+                      </div>
                     </td>
-                    <td class="offer-date">20.11.2027</td>
+                    <td class="offer-date">
+                      <span class="event-date">20.11.2027</span>
+                      <span class="event-date">N. N.</span>
+                    </td>
                     <td>–</td>
                   </>
                 ) : month === "Dezember" ? (
@@ -138,6 +147,9 @@ const months = [
     .month-row-12 td, .month-cell-12 { background: #e5eff9; }
     .offer-name, .offer-date { color: #087e8b; font-weight: 800; }
     .offer-name { letter-spacing: .01em; }
+    .event-entry + .event-entry { margin-top: .9rem; padding-top: .8rem; border-top: 1px solid rgb(12 59 109 / 18%); }
+    .event-date { display: block; color: #087e8b; font-weight: 800; }
+    .event-date + .event-date { margin-top: 2.05rem; }
     .places-available { display: block; margin-top: .35rem; color: #0c3b6d; font-size: .88rem; font-weight: 700; }
     .sold-out { color: #a33b3b; }
     .to-be-announced { color: #56738d; }
