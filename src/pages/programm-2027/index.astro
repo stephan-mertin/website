@@ -65,23 +65,24 @@ const months = [
                     <td>–</td>
                   </>
                 ) : month === "November" ? (
-                  <>
-                    <td>
-                      <div class="event-entry">
-                        <strong class="offer-name">KARAT – 45 Jahre „Der blaue Planet“</strong>
+                  <td colSpan="3" class="multi-events-cell">
+                    <div class="multi-event-list">
+                      <article class="multi-event-card">
+                        <div class="multi-event-top">
+                          <strong class="offer-name">KARAT – 45 Jahre „Der blaue Planet“</strong>
+                          <span class="event-date">20.11.2027</span>
+                        </div>
                         <span class="places-available">Noch 7 Plätze frei</span>
-                      </div>
-                      <div class="event-entry">
-                        <strong class="offer-name">Eishockey: Füchse Weißwasser</strong>
+                      </article>
+                      <article class="multi-event-card">
+                        <div class="multi-event-top">
+                          <strong class="offer-name">Eishockey: Füchse Weißwasser</strong>
+                          <span class="event-date">N. N.</span>
+                        </div>
                         <span class="places-available">Noch 7 Plätze frei</span>
-                      </div>
-                    </td>
-                    <td class="offer-date">
-                      <span class="event-date">20.11.2027</span>
-                      <span class="event-date">N. N.</span>
-                    </td>
-                    <td>–</td>
-                  </>
+                      </article>
+                    </div>
+                  </td>
                 ) : month === "Dezember" ? (
                   <>
                     <td>
@@ -147,10 +148,12 @@ const months = [
     .month-row-12 td, .month-cell-12 { background: #e5eff9; }
     .offer-name, .offer-date { color: #087e8b; font-weight: 800; }
     .offer-name { letter-spacing: .01em; }
-    .event-entry + .event-entry { margin-top: .9rem; padding-top: .8rem; border-top: 1px solid rgb(12 59 109 / 18%); }
-    .event-date { display: block; color: #087e8b; font-weight: 800; }
-    .event-date + .event-date { margin-top: 2.05rem; }
-    .places-available { display: block; margin-top: .35rem; color: #0c3b6d; font-size: .88rem; font-weight: 700; }
+    .event-date { flex: 0 0 auto; color: #087e8b; font-weight: 800; white-space: nowrap; }
+    .multi-events-cell { padding: .8rem 1rem; }
+    .multi-event-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; }
+    .multi-event-card { min-width: 0; padding: 1rem 1.1rem; border: 1px solid rgb(12 59 109 / 13%); border-radius: .75rem; background: rgb(255 255 255 / 72%); }
+    .multi-event-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .35rem 1rem; }
+    .places-available { display: block; margin-top: .45rem; color: #0c3b6d; font-size: .88rem; font-weight: 700; }
     .sold-out { color: #a33b3b; }
     .to-be-announced { color: #56738d; }
     .table-note { margin: 1rem 0 0; color: #56738d; font-size: .9rem; line-height: 1.6; }
@@ -174,6 +177,10 @@ const months = [
       tbody td { padding: .25rem 0; border: 0; font-size: .9rem; }
       tbody td.offer-date { color: #087e8b; }
       tbody td:nth-child(2) { grid-column: 1 / -1; }
+      tbody td.multi-events-cell { grid-column: 1 / -1; padding: .2rem 0 0; }
+      .multi-event-list { grid-template-columns: 1fr; gap: .65rem; }
+      .multi-event-card { padding: .85rem .95rem; }
+      .multi-event-top { align-items: flex-start; flex-direction: column; gap: .25rem; }
       .highlights ul { grid-template-columns: 1fr; }
     }
   </style>
