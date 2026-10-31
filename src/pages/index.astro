@@ -113,6 +113,9 @@ const schema = {
           decoding="async"
         />
       </a>
+      <p class="travel-program-tap-hint">
+        👆 Tippen Sie auf das Bild, um das Programm 2027 und die Jahresübersicht zu entdecken.
+      </p>
       <p class="travel-program-note">
         Interessieren Sie sich für KARAT, Cavalluna oder Sascha Grammel?
         Dann nehmen Sie einfach über den <a href={`${base}/reisekonfigurator/`}>Reisekonfigurator</a> Kontakt mit mir auf.
@@ -311,6 +314,17 @@ const schema = {
     </section>
 
     <style>
+      .travel-program-tap-hint {
+        margin: 0.9rem auto 0;
+        padding: 0.85rem 1rem;
+        max-width: 900px;
+        border-radius: 10px;
+        background: #eaf2f8;
+        color: #0c3b6d;
+        text-align: center;
+        font-weight: 700;
+        line-height: 1.5;
+      }
       .classic-gallery {
         padding: clamp(2.5rem, 6vw, 4rem) max(1.25rem, calc((100% - 1120px) / 2));
         background: #f3f7fa;
