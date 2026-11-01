@@ -21,8 +21,12 @@ const calendar = months.map((month) => ({
   month,
   offers: [
     ...(publishedOffers[month] ?? []),
-    { name: "Weiteres Angebot", date: "Termin folgt", places: "Platzangabe folgt", placeholder: true },
-    { name: "Weiteres Angebot", date: "Termin folgt", places: "Platzangabe folgt", placeholder: true },
+    ...(publishedOffers[month]
+      ? [{ name: "Weiteres Angebot", date: "Termin folgt", places: "Platzangabe folgt", placeholder: true }]
+      : [
+          { name: "Weiteres Angebot", date: "Termin folgt", places: "Platzangabe folgt", placeholder: true },
+          { name: "Weiteres Angebot", date: "Termin folgt", places: "Platzangabe folgt", placeholder: true },
+        ]),
   ],
 }));
 ---
