@@ -6,7 +6,7 @@ const months = [
   "Juli", "August", "September", "Oktober", "November", "Dezember",
 ];
 
-const publishedOffers = {
+const publishedOffers: Record<string, { name: string; date: string; places: string; soldOut?: boolean }[]> = {
   Mai: [{ name: "Städtereise Leipzig", date: "Termin folgt", places: "Ausgebucht – keine Plätze frei", soldOut: true }],
   Juli: [{ name: "AIDA-Kreuzfahrt", date: "Termin folgt", places: "Ausgebucht – keine Plätze frei", soldOut: true }],
   Oktober: [{ name: "Cavalluna", date: "23.10.2027", places: "Noch 5 Plätze frei" }],
