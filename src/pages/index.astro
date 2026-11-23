@@ -324,6 +324,7 @@ const schema = {
           <source src={`${base}/lv_7635327477631552775_20261123203935.mp4`} type="video/mp4" />
           Dein Browser unterstützt dieses Video leider nicht.
         </video>
+        <a class="classic-video-enlarge" href={`${base}/lv_7635327477631552775_20261123203935.mp4`} target="_blank" rel="noopener noreferrer">Video vergrößert ansehen <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
@@ -411,7 +412,7 @@ const schema = {
         text-align: center;
       }
       .classic-video-card {
-        max-width: 900px;
+        max-width: 1100px;
         margin: 0 auto;
         overflow: hidden;
         border-radius: 12px;
@@ -421,10 +422,28 @@ const schema = {
       .classic-video-card video {
         display: block;
         width: 100%;
-        max-height: 75vh;
+        max-height: 78vh;
         aspect-ratio: 16 / 9;
         object-fit: contain;
         background: #102334;
+      }
+      .classic-video-enlarge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 48px;
+        padding: 0.8rem 1rem;
+        background: #173b5c;
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+      }
+      .classic-video-enlarge:hover,
+      .classic-video-enlarge:focus-visible {
+        background: #24577f;
+        text-decoration: underline;
       }
       .classic-gallery-grid {
         display: grid;
