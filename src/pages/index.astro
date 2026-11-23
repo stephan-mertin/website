@@ -314,6 +314,19 @@ const schema = {
     </section>
 
 
+    <section class="classic-gallery" aria-labelledby="aida-video-title">
+      <div class="classic-gallery-heading">
+        <p class="eyebrow">Gemeinsame Erlebnisse</p>
+        <h2 id="aida-video-title">Urlaub auf der Aida 2026</h2>
+      </div>
+      <div class="classic-video-card">
+        <video controls playsinline preload="metadata" aria-label="Urlaub auf der Aida 2026">
+          <source src={`${base}/lv_7635327477631552775_20261123203935.mp4`} type="video/mp4" />
+          Dein Browser unterstützt dieses Video leider nicht.
+        </video>
+      </div>
+    </section>
+
     <section class="classic-gallery" aria-labelledby="helene-gallery-title">
       <div class="classic-gallery-heading">
         <p class="eyebrow">Gemeinsame Erlebnisse</p>
@@ -396,6 +409,22 @@ const schema = {
       .classic-gallery-heading {
         margin: 0 auto 1.5rem;
         text-align: center;
+      }
+      .classic-video-card {
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 12px;
+        background: #e5ebf0;
+        box-shadow: 0 8px 24px rgb(23 50 77 / 10%);
+      }
+      .classic-video-card video {
+        display: block;
+        width: 100%;
+        max-height: 75vh;
+        aspect-ratio: 16 / 9;
+        object-fit: contain;
+        background: #102334;
       }
       .classic-gallery-grid {
         display: grid;
